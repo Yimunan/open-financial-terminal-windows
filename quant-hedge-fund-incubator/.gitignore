@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# Secrets / config
+.env
+
+# Logs
+*.log
+
+# Incubator data & artifacts (regenerable) — anchored to the repo root so these do NOT
+# also match the source packages src/qhfi/data/ and src/qhfi/models/ (which were silently
+# excluded from the initial public release by the unanchored patterns).
+/data/
+/reports/
+/models/
+*.sqlite
+*.duckdb
+
+# Desktop build artifacts (PyInstaller onedir for the standalone qhfi.exe)
+dist_desktop/
+build_desktop/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/

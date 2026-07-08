@@ -1,0 +1,20 @@
+name: fx_majors
+# G10 spot FX. id is the canonical PAIR (base/quote); base_currency/quote_currency split it.
+# AssetClass.FX + InstrumentForm.CASH (spot, fully funded). yfinance symbol map lives in
+# scripts/pull_fx.py (EUR/USD -> EURUSD=X). All quoted in market convention (USD per unit
+# for EUR/GBP/AUD/NZD; quote-ccy per USD for JPY/CHF/CAD).
+instruments:
+  # --- USD majors (the seven most-traded) ---
+  - { id: "EUR/USD", asset_class: fx, exchange: OTC, base_currency: EUR, quote_currency: USD }
+  - { id: "USD/JPY", asset_class: fx, exchange: OTC, base_currency: USD, quote_currency: JPY }
+  - { id: "GBP/USD", asset_class: fx, exchange: OTC, base_currency: GBP, quote_currency: USD }
+  - { id: "USD/CHF", asset_class: fx, exchange: OTC, base_currency: USD, quote_currency: CHF }
+  - { id: "USD/CAD", asset_class: fx, exchange: OTC, base_currency: USD, quote_currency: CAD }
+  - { id: "AUD/USD", asset_class: fx, exchange: OTC, base_currency: AUD, quote_currency: USD }
+  - { id: "NZD/USD", asset_class: fx, exchange: OTC, base_currency: NZD, quote_currency: USD }
+  # --- key crosses (no USD leg) ---
+  - { id: "EUR/JPY", asset_class: fx, exchange: OTC, base_currency: EUR, quote_currency: JPY }
+  - { id: "EUR/GBP", asset_class: fx, exchange: OTC, base_currency: EUR, quote_currency: GBP }
+  - { id: "EUR/CHF", asset_class: fx, exchange: OTC, base_currency: EUR, quote_currency: CHF }
+  - { id: "GBP/JPY", asset_class: fx, exchange: OTC, base_currency: GBP, quote_currency: JPY }
+  - { id: "AUD/JPY", asset_class: fx, exchange: OTC, base_currency: AUD, quote_currency: JPY }

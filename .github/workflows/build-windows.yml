@@ -1,0 +1,202 @@
+name: Build Windows installer
+
+# This repo is standalone: the full app source is vendored in-tree
+# (open-financial-terminal/ + quant-hedge-fund-incubator/ as siblings, the layout
+# backend/oft-backend.spec and scripts/*.ps1 expect). One checkout builds everything.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Installer version (Inno Setup /DAppVersion; release tag becomes v<version>)"
+        required: true
+        default: "1.0.3"
+      create_release:
+        description: "Create/update the GitHub Release v<version> with the installer attached"
+        type: boolean
+        required: true
+        default: false
+
+permissions:
+  contents: write # release upload via GITHUB_TOKEN
+
+concurrency:
+  group: build-windows-installer
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 90
+    defaults:
+      run:
+        shell: pwsh
+    env:
+      OFT_DIR: ${{ github.workspace }}\open-financial-terminal
+      QHFI_DIR: ${{ github.workspace }}\quant-hedge-fund-incubator
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Guard - vendored qhfi source packages present
+        run: |
+          foreach ($p in @("$env:QHFI_DIR\src\qhfi\data\base.py",
+                           "$env:QHFI_DIR\src\qhfi\models")) {
+            if (-not (Test-Path $p)) {
+              throw "qhfi tree is missing '$p' - the vendored engine is incomplete."
+            }
+          }
+
+      - name: Guard - rthook_env.py wired into the freeze
+        run: |
+          $spec = Get-Content "$env:OFT_DIR\backend\oft-backend.spec" -Raw
+          if ($spec -notmatch 'runtime_hooks\s*=\s*\[\s*"rthook_env\.py"\s*\]') {
+            throw "backend/oft-backend.spec must have runtime_hooks=[""rthook_env.py""] or SEC EDGAR requests 403 in the frozen build."
+          }
+          if (-not (Test-Path "$env:OFT_DIR\backend\rthook_env.py")) {
+            throw "backend/rthook_env.py is missing."
+          }
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: open-financial-terminal/frontend/package-lock.json
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            open-financial-terminal/backend/pyproject.toml
+            quant-hedge-fund-incubator/pyproject.toml
+
+      - name: Build frontend (npm ci + tsc + vite)
+        working-directory: open-financial-terminal/frontend
+        run: |
+          npm ci
+          if ($LASTEXITCODE -ne 0) { throw "npm ci failed: $LASTEXITCODE" }
+          npm run build
+          if ($LASTEXITCODE -ne 0) { throw "npm run build failed (tsc/vite): $LASTEXITCODE" }
+          if (-not (Test-Path "dist\index.html")) { throw "frontend build produced no dist/index.html" }
+
+      # build_desktop.ps1 expects backend\.venv\Scripts\pyinstaller.exe, so install into that venv.
+      - name: Create backend venv + install engine and backend[desktop,build]
+        working-directory: open-financial-terminal/backend
+        run: |
+          python -m venv .venv
+          $py = ".\.venv\Scripts\python.exe"
+          & $py -m pip install --upgrade pip
+          if ($LASTEXITCODE -ne 0) { throw "pip upgrade failed" }
+          & $py -m pip install -e "$env:QHFI_DIR"
+          if ($LASTEXITCODE -ne 0) { throw "pip install qhfi failed" }
+          & $py -m pip install -e ".[desktop,build]"
+          if ($LASTEXITCODE -ne 0) { throw "pip install backend[desktop,build] failed" }
+          & $py -c "import qhfi, fastapi, uvicorn, webview, PyInstaller; print('imports OK')"
+          if ($LASTEXITCODE -ne 0) { throw "post-install import check failed" }
+
+      # ISCC.exe is preinstalled on windows-latest at the first path the script probes.
+      - name: Freeze backend + compile installer
+        working-directory: open-financial-terminal
+        run: |
+          ./scripts/build_desktop.ps1 -Installer -Version "${{ inputs.version }}"
+          $exe = "backend\dist_desktop\oft-backend\oft-backend.exe"
+          if (-not (Test-Path $exe)) { throw "PyInstaller output missing: $exe" }
+          $setup = Get-ChildItem "packaging\dist_installer" -Filter "OpenFinancialTerminal-Setup-*.exe" | Select-Object -First 1
+          if (-not $setup) { throw "Inno Setup output missing in packaging\dist_installer" }
+          "SETUP_EXE=$($setup.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          Write-Host ("onedir size : {0:N0} MB" -f ((Get-ChildItem backend\dist_desktop\oft-backend -Recurse | Measure-Object Length -Sum).Sum / 1MB))
+          Write-Host ("installer   : {0}  ({1:N0} MB)" -f $setup.Name, ($setup.Length / 1MB))
+
+      # The release exe is windowed: run_desktop.py redirects stdout to
+      # %LOCALAPPDATA%\OpenFinancialTerminal\logs\desktop.log, so OFT_URL= is read from that log.
+      - name: Smoke test frozen backend (--server-only + /api/health)
+        run: |
+          $exe = "$env:OFT_DIR\backend\dist_desktop\oft-backend\oft-backend.exe"
+          $log = "$env:LOCALAPPDATA\OpenFinancialTerminal\logs\desktop.log"
+          Remove-Item $log -Force -ErrorAction SilentlyContinue
+
+          $proc = Start-Process -FilePath $exe -ArgumentList "--server-only" -PassThru
+          Write-Host "launched pid=$($proc.Id)"
+
+          $url = $null
+          $deadline = (Get-Date).AddSeconds(120)
+          while (-not $url -and (Get-Date) -lt $deadline -and -not $proc.HasExited) {
+            if (Test-Path $log) {
+              $m = Select-String -Path $log -Pattern '^OFT_URL=(\S+)' -ErrorAction SilentlyContinue | Select-Object -First 1
+              if ($m) { $url = $m.Matches[0].Groups[1].Value }
+            }
+            Start-Sleep -Seconds 2
+          }
+          if ($proc.HasExited) {
+            Write-Host "--- desktop.log ---"
+            Get-Content $log -ErrorAction SilentlyContinue | Select-Object -Last 120
+            throw "oft-backend.exe exited early (code $($proc.ExitCode))"
+          }
+          if (-not $url) { $url = "http://127.0.0.1:8050"; Write-Host "OFT_URL not seen in log yet; assuming $url" }
+          Write-Host "backend URL: $url"
+
+          $ok = $false
+          $deadline = (Get-Date).AddSeconds(240)
+          while (-not $ok -and (Get-Date) -lt $deadline -and -not $proc.HasExited) {
+            try {
+              $r = Invoke-RestMethod -Uri "$url/api/health" -TimeoutSec 10
+              if ($r.status -eq "ok") { $ok = $true; Write-Host "health OK" }
+            } catch { Start-Sleep -Seconds 3 }
+          }
+
+          Stop-Process -Id $proc.Id -Force -ErrorAction SilentlyContinue
+          Write-Host "--- desktop.log (tail) ---"
+          Get-Content $log -ErrorAction SilentlyContinue | Select-Object -Last 60
+          if (-not $ok) { throw "smoke test failed: $url/api/health never returned status=ok" }
+
+      # Constant asset name -> stable releases/latest/download URL (mirrors the mac DMG convention).
+      - name: Stage artifact (constant name + SHA256)
+        run: |
+          $dir = "$env:OFT_DIR\packaging\dist_installer"
+          Copy-Item $env:SETUP_EXE "$dir\OpenFinancialTerminal-Setup.exe" -Force
+          $h = Get-FileHash "$dir\OpenFinancialTerminal-Setup.exe" -Algorithm SHA256
+          "$($h.Hash)  OpenFinancialTerminal-Setup.exe" | Out-File "$dir\SHA256SUMS.txt" -Encoding ascii
+          Get-Content "$dir\SHA256SUMS.txt"
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenFinancialTerminal-Setup-windows-x64
+          path: |
+            open-financial-terminal/packaging/dist_installer/OpenFinancialTerminal-Setup.exe
+            open-financial-terminal/packaging/dist_installer/SHA256SUMS.txt
+          if-no-files-found: error
+          compression-level: 0 # installer is already lzma2/max-compressed
+          retention-days: 14
+
+      - name: Create GitHub Release
+        if: ${{ inputs.create_release }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $tag = "v${{ inputs.version }}"
+          $repo = $env:GITHUB_REPOSITORY
+          $dir = "$env:OFT_DIR\packaging\dist_installer"
+          $sha = Get-Content "$dir\SHA256SUMS.txt" -Raw
+          $notes = @(
+            "Open Financial Terminal for Windows (x64), built from the vendored source in this repo at $env:GITHUB_SHA.",
+            "",
+            "Install: download **OpenFinancialTerminal-Setup.exe**, run it (SmartScreen: More info -> Run anyway), launch from the Start menu.",
+            "Stable URL: https://github.com/$repo/releases/latest/download/OpenFinancialTerminal-Setup.exe",
+            "",
+            "SHA256:",
+            '```',
+            $sha.Trim(),
+            '```'
+          ) -join "`n"
+          gh release view $tag --repo $repo 2>$null
+          if ($LASTEXITCODE -eq 0) {
+            gh release upload $tag --repo $repo --clobber "$dir\OpenFinancialTerminal-Setup.exe" "$dir\SHA256SUMS.txt"
+          } else {
+            gh release create $tag --repo $repo --target $env:GITHUB_SHA --title "Open Financial Terminal $tag (Windows x64)" --notes $notes "$dir\OpenFinancialTerminal-Setup.exe" "$dir\SHA256SUMS.txt"
+          }
+          if ($LASTEXITCODE -ne 0) { throw "gh release step failed" }

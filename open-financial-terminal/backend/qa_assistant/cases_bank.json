@@ -1,0 +1,10 @@
+[
+  {"q": "What is the ticker symbol for JPMorgan?", "symbol": "AAPL"},
+  {"q": "Find the symbol of the bank", "symbol": "AAPL"},
+  {"q": "What's the ticker for Goldman Sachs and how has it done this year?", "symbol": "AAPL"},
+  {"q": "Which bank in the dow30 has the best momentum?", "symbol": "AAPL"},
+  {"q": "Compare the big US banks: JPM, BAC, WFC, C this quarter.", "symbol": "JPM"},
+  {"q": "What is JPM's P/E and dividend yield?", "symbol": "JPM"},
+  {"q": "Show me bank stocks I can look at.", "symbol": "AAPL"},
+  {"q": "Is Bank of America cheaper than JPMorgan right now?", "symbol": "BAC"}
+]

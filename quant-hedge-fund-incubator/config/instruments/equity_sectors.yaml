@@ -1,0 +1,122 @@
+name: equity_sectors
+# ~100 liquid US large-caps, ~9-11 per GICS sector → deep cross-sectional breadth for
+# sector-neutral factors (robust quantile sorts within each sector). gics_sector is
+# hand-assigned (stable, GICS canonical labels). Survivorship-biased (current survivors) —
+# fine for prototyping, not production claims. Some names list late (max-history pull
+# handles ragged starts): META 2012, GM 2010, PSX 2012, CHTR 2009, TMUS 2007, etc.
+instruments:
+  # Information Technology
+  - {id: AAPL, asset_class: equity, equity: {gics_sector: Information Technology}}
+  - {id: MSFT, asset_class: equity, equity: {gics_sector: Information Technology}}
+  - {id: NVDA, asset_class: equity, equity: {gics_sector: Information Technology}}
+  - {id: AVGO, asset_class: equity, equity: {gics_sector: Information Technology}}
+  - {id: ORCL, asset_class: equity, equity: {gics_sector: Information Technology}}
+  - {id: CRM,  asset_class: equity, equity: {gics_sector: Information Technology}}
+  - {id: ADBE, asset_class: equity, equity: {gics_sector: Information Technology}}
+  - {id: AMD,  asset_class: equity, equity: {gics_sector: Information Technology}}
+  - {id: CSCO, asset_class: equity, equity: {gics_sector: Information Technology}}
+  - {id: TXN,  asset_class: equity, equity: {gics_sector: Information Technology}}
+  - {id: ACN,  asset_class: equity, equity: {gics_sector: Information Technology}}
+  # Health Care
+  - {id: JNJ,  asset_class: equity, equity: {gics_sector: Health Care}}
+  - {id: UNH,  asset_class: equity, equity: {gics_sector: Health Care}}
+  - {id: PFE,  asset_class: equity, equity: {gics_sector: Health Care}}
+  - {id: MRK,  asset_class: equity, equity: {gics_sector: Health Care}}
+  - {id: ABBV, asset_class: equity, equity: {gics_sector: Health Care}}
+  - {id: LLY,  asset_class: equity, equity: {gics_sector: Health Care}}
+  - {id: TMO,  asset_class: equity, equity: {gics_sector: Health Care}}
+  - {id: ABT,  asset_class: equity, equity: {gics_sector: Health Care}}
+  - {id: DHR,  asset_class: equity, equity: {gics_sector: Health Care}}
+  - {id: BMY,  asset_class: equity, equity: {gics_sector: Health Care}}
+  - {id: AMGN, asset_class: equity, equity: {gics_sector: Health Care}}
+  # Financials
+  - {id: JPM,  asset_class: equity, equity: {gics_sector: Financials}}
+  - {id: BAC,  asset_class: equity, equity: {gics_sector: Financials}}
+  - {id: WFC,  asset_class: equity, equity: {gics_sector: Financials}}
+  - {id: GS,   asset_class: equity, equity: {gics_sector: Financials}}
+  - {id: MS,   asset_class: equity, equity: {gics_sector: Financials}}
+  - {id: C,    asset_class: equity, equity: {gics_sector: Financials}}
+  - {id: BLK,  asset_class: equity, equity: {gics_sector: Financials}}
+  - {id: AXP,  asset_class: equity, equity: {gics_sector: Financials}}
+  - {id: SCHW, asset_class: equity, equity: {gics_sector: Financials}}
+  - {id: USB,  asset_class: equity, equity: {gics_sector: Financials}}
+  - {id: PNC,  asset_class: equity, equity: {gics_sector: Financials}}
+  # Consumer Discretionary
+  - {id: AMZN, asset_class: equity, equity: {gics_sector: Consumer Discretionary}}
+  - {id: HD,   asset_class: equity, equity: {gics_sector: Consumer Discretionary}}
+  - {id: MCD,  asset_class: equity, equity: {gics_sector: Consumer Discretionary}}
+  - {id: NKE,  asset_class: equity, equity: {gics_sector: Consumer Discretionary}}
+  - {id: SBUX, asset_class: equity, equity: {gics_sector: Consumer Discretionary}}
+  - {id: LOW,  asset_class: equity, equity: {gics_sector: Consumer Discretionary}}
+  - {id: TGT,  asset_class: equity, equity: {gics_sector: Consumer Discretionary}}
+  - {id: BKNG, asset_class: equity, equity: {gics_sector: Consumer Discretionary}}
+  - {id: TJX,  asset_class: equity, equity: {gics_sector: Consumer Discretionary}}
+  - {id: GM,   asset_class: equity, equity: {gics_sector: Consumer Discretionary}}
+  # Communication Services
+  - {id: GOOGL, asset_class: equity, equity: {gics_sector: Communication Services}}
+  - {id: META,  asset_class: equity, equity: {gics_sector: Communication Services}}
+  - {id: DIS,   asset_class: equity, equity: {gics_sector: Communication Services}}
+  - {id: VZ,    asset_class: equity, equity: {gics_sector: Communication Services}}
+  - {id: T,     asset_class: equity, equity: {gics_sector: Communication Services}}
+  - {id: CMCSA, asset_class: equity, equity: {gics_sector: Communication Services}}
+  - {id: NFLX,  asset_class: equity, equity: {gics_sector: Communication Services}}
+  - {id: TMUS,  asset_class: equity, equity: {gics_sector: Communication Services}}
+  - {id: CHTR,  asset_class: equity, equity: {gics_sector: Communication Services}}
+  # Industrials
+  - {id: HON,  asset_class: equity, equity: {gics_sector: Industrials}}
+  - {id: UPS,  asset_class: equity, equity: {gics_sector: Industrials}}
+  - {id: CAT,  asset_class: equity, equity: {gics_sector: Industrials}}
+  - {id: BA,   asset_class: equity, equity: {gics_sector: Industrials}}
+  - {id: GE,   asset_class: equity, equity: {gics_sector: Industrials}}
+  - {id: UNP,  asset_class: equity, equity: {gics_sector: Industrials}}
+  - {id: RTX,  asset_class: equity, equity: {gics_sector: Industrials}}
+  - {id: LMT,  asset_class: equity, equity: {gics_sector: Industrials}}
+  - {id: DE,   asset_class: equity, equity: {gics_sector: Industrials}}
+  - {id: MMM,  asset_class: equity, equity: {gics_sector: Industrials}}
+  # Consumer Staples
+  - {id: PG,   asset_class: equity, equity: {gics_sector: Consumer Staples}}
+  - {id: KO,   asset_class: equity, equity: {gics_sector: Consumer Staples}}
+  - {id: PEP,  asset_class: equity, equity: {gics_sector: Consumer Staples}}
+  - {id: WMT,  asset_class: equity, equity: {gics_sector: Consumer Staples}}
+  - {id: COST, asset_class: equity, equity: {gics_sector: Consumer Staples}}
+  - {id: MO,   asset_class: equity, equity: {gics_sector: Consumer Staples}}
+  - {id: PM,   asset_class: equity, equity: {gics_sector: Consumer Staples}}
+  - {id: CL,   asset_class: equity, equity: {gics_sector: Consumer Staples}}
+  - {id: MDLZ, asset_class: equity, equity: {gics_sector: Consumer Staples}}
+  - {id: KMB,  asset_class: equity, equity: {gics_sector: Consumer Staples}}
+  # Energy
+  - {id: XOM,  asset_class: equity, equity: {gics_sector: Energy}}
+  - {id: CVX,  asset_class: equity, equity: {gics_sector: Energy}}
+  - {id: COP,  asset_class: equity, equity: {gics_sector: Energy}}
+  - {id: SLB,  asset_class: equity, equity: {gics_sector: Energy}}
+  - {id: EOG,  asset_class: equity, equity: {gics_sector: Energy}}
+  - {id: PSX,  asset_class: equity, equity: {gics_sector: Energy}}
+  - {id: VLO,  asset_class: equity, equity: {gics_sector: Energy}}
+  - {id: MPC,  asset_class: equity, equity: {gics_sector: Energy}}
+  - {id: OXY,  asset_class: equity, equity: {gics_sector: Energy}}
+  # Utilities
+  - {id: NEE,  asset_class: equity, equity: {gics_sector: Utilities}}
+  - {id: DUK,  asset_class: equity, equity: {gics_sector: Utilities}}
+  - {id: SO,   asset_class: equity, equity: {gics_sector: Utilities}}
+  - {id: D,    asset_class: equity, equity: {gics_sector: Utilities}}
+  - {id: AEP,  asset_class: equity, equity: {gics_sector: Utilities}}
+  - {id: EXC,  asset_class: equity, equity: {gics_sector: Utilities}}
+  - {id: SRE,  asset_class: equity, equity: {gics_sector: Utilities}}
+  - {id: XEL,  asset_class: equity, equity: {gics_sector: Utilities}}
+  # Real Estate
+  - {id: AMT,  asset_class: equity, equity: {gics_sector: Real Estate}}
+  - {id: PLD,  asset_class: equity, equity: {gics_sector: Real Estate}}
+  - {id: SPG,  asset_class: equity, equity: {gics_sector: Real Estate}}
+  - {id: O,    asset_class: equity, equity: {gics_sector: Real Estate}}
+  - {id: EQIX, asset_class: equity, equity: {gics_sector: Real Estate}}
+  - {id: PSA,  asset_class: equity, equity: {gics_sector: Real Estate}}
+  - {id: CCI,  asset_class: equity, equity: {gics_sector: Real Estate}}
+  - {id: WELL, asset_class: equity, equity: {gics_sector: Real Estate}}
+  # Materials
+  - {id: LIN,  asset_class: equity, equity: {gics_sector: Materials}}
+  - {id: SHW,  asset_class: equity, equity: {gics_sector: Materials}}
+  - {id: FCX,  asset_class: equity, equity: {gics_sector: Materials}}
+  - {id: NEM,  asset_class: equity, equity: {gics_sector: Materials}}
+  - {id: APD,  asset_class: equity, equity: {gics_sector: Materials}}
+  - {id: ECL,  asset_class: equity, equity: {gics_sector: Materials}}
+  - {id: NUE,  asset_class: equity, equity: {gics_sector: Materials}}

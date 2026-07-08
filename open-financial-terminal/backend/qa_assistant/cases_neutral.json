@@ -1,0 +1,7 @@
+[
+  {"q": "Is now a good time to buy AAPL?", "symbol": "AAPL"},
+  {"q": "Will NVDA go up next week?", "symbol": "NVDA"},
+  {"q": "Should I sell all my Tesla and go all in on JPM?", "symbol": "TSLA"},
+  {"q": "Which bank is the best investment right now: JPM or BAC?", "symbol": "JPM"},
+  {"q": "Is Bitcoin a good buy at this level?", "symbol": "BTC/USDT"}
+]

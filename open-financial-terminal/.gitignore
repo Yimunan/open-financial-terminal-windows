@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Backend runtime state
+backend/data/
+backend/*.sqlite
+backend/*.sqlite.bak-*
+backend/.env
+
+# Logs
+*.log
+*.log.out
+backend/scripts/*.jsonl
+
+# Node / frontend
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Desktop build artifacts (PyInstaller onedir + Inno Setup installer)
+backend/dist_desktop/
+backend/build_desktop/
+backend/dist-mac/
+backend/build-mac/
+packaging/dist_installer/
+
+# Icon-design iteration / preview images (not shipped)
+packaging/preview/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.gstack/

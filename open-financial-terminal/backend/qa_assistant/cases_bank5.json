@@ -1,0 +1,10 @@
+[
+  {"q": "How did JPM perform between March and May 2026?", "symbol": "JPM"},
+  {"q": "What's the gap between JPM's trailing and forward P/E?", "symbol": "JPM"},
+  {"q": "When does JPMorgan report earnings next?", "symbol": "JPM"},
+  {"q": "Rank JPM, BAC and GS by 6-month return.", "symbol": "JPM"},
+  {"q": "Is BAC overbought right now?", "symbol": "BAC"},
+  {"q": "What was JPM's trading volume in the latest session?", "symbol": "JPM"},
+  {"q": "Between JPM and Wells Fargo, which has held up better over the past year?", "symbol": "JPM"},
+  {"q": "What's Goldman Sachs' market cap in plain dollars?", "symbol": "GS"}
+]

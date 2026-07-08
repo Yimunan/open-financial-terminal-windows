@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "oft-backend"
+version = "2.0.0"
+description = "Open Financial Terminal — FastAPI backend (reuses qhfi as the engine)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+# qhfi itself is installed editable from the sibling repo and pulls the heavy data/quant
+# deps (pandas, numpy, yfinance, ccxt, httpx, pydantic, pyyaml). See README / setup.ps1:
+#   pip install -e ../quant-hedge-fund-incubator
+# These are the terminal-only additions on top of that.
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "python-multipart>=0.0.9",  # file uploads for the Investment Committee knowledge bases
+    "httpx>=0.27",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    # Agent workflow builder — real LangGraph over the local vLLM proxy.
+    "langgraph>=0.2",
+    "langchain-openai>=0.2",
+    # Model Context Protocol — bundles FastMCP (the stdio server that exposes the terminal's
+    # tools) AND the client transports (so the assistant can consume external MCP servers).
+    "mcp>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.2", "ruff>=0.5"]
+# Native desktop launcher (run_desktop.py): pywebview drives the OS webview (Edge WebView2 on
+# Windows). Install with:  pip install -e ".[desktop]"
+desktop = ["pywebview>=5.0"]
+# Distributable-installer toolchain (PyInstaller freeze of the backend + standalone qhfi.exe).
+build = ["pyinstaller>=6.6"]
+# Real order-book depth vendors (Settings → Market Data → Order-book depth). Each is optional and
+# gated at runtime — the depth source reports "unavailable" until its SDK + creds are present.
+# ib_async also needs a running IB Gateway/TWS; databento needs DATABENTO_API_KEY; dxfeed needs
+# OFT_DXFEED_ADDRESS.  Install with:  pip install -e ".[providers]"
+providers = ["ib_async>=1.0", "databento>=0.34", "dxfeed>=0.5"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

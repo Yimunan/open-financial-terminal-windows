@@ -1,0 +1,203 @@
+name: managers_13f_top100
+anchor_period: '2026-03-31'
+managers:
+- cik: 2012383
+  name: BlackRock, Inc.
+- cik: 2100119
+  name: VANGUARD CAPITAL MANAGEMENT LLC
+- cik: 93751
+  name: STATE STREET CORP
+- cik: 315066
+  name: FMR LLC
+- cik: 895421
+  name: MORGAN STANLEY
+- cik: 1214717
+  name: GEODE CAPITAL MANAGEMENT, LLC
+- cik: 70858
+  name: BANK OF AMERICA CORP /DE/
+- cik: 886982
+  name: GOLDMAN SACHS GROUP INC
+- cik: 73124
+  name: NORTHERN TRUST CORP
+- cik: 1422849
+  name: Capital World Investors
+- cik: 884546
+  name: CHARLES SCHWAB INVESTMENT MANAGEMENT INC
+- cik: 914208
+  name: Invesco Ltd.
+- cik: 1422848
+  name: Capital Research Global Investors
+- cik: 1610520
+  name: UBS Group AG
+- cik: 1390777
+  name: Bank of New York Mellon Corp
+- cik: 902219
+  name: WELLINGTON MANAGEMENT GROUP LLP
+- cik: 1000275
+  name: ROYAL BANK OF CANADA
+- cik: 72971
+  name: WELLS FARGO & COMPANY/MN
+- cik: 354204
+  name: DIMENSIONAL FUND ADVISORS LP
+- cik: 861177
+  name: UBS AM, a distinct business unit of UBS ASSET MANAGEMENT AMERICAS LLC
+- cik: 764068
+  name: Legal & General Group Plc
+- cik: 820027
+  name: AMERIPRISE FINANCIAL INC
+- cik: 1562230
+  name: Capital International Investors
+- cik: 38777
+  name: FRANKLIN RESOURCES INC
+- cik: 1403438
+  name: LPL Financial LLC
+- cik: 1407543
+  name: ENVESTNET ASSET MANAGEMENT INC
+- cik: 1871926
+  name: Nuveen, LLC
+- cik: 1330387
+  name: Amundi
+- cik: 720005
+  name: RAYMOND JAMES FINANCIAL INC
+- cik: 1109448
+  name: ALLIANCEBERNSTEIN L.P.
+- cik: 948046
+  name: DEUTSCHE BANK AG\
+- cik: 1569395
+  name: Mirae Asset Global Investments Co., Ltd.
+- cik: 912938
+  name: MASSACHUSETTS FINANCIAL SERVICES CO /MA/
+- cik: 850529
+  name: Fisher Asset Management, LLC
+- cik: 312069
+  name: BARCLAYS PLC
+- cik: 1067983
+  name: Berkshire Hathaway Inc
+- cik: 927971
+  name: BANK OF MONTREAL /CAN/
+- cik: 1167557
+  name: AQR CAPITAL MANAGEMENT LLC
+- cik: 1274173
+  name: JANUS HENDERSON GROUP PLC
+- cik: 815917
+  name: JONES FINANCIAL COMPANIES LLLP
+- cik: 748054
+  name: AMERICAN CENTURY COMPANIES INC
+- cik: 1126328
+  name: PRINCIPAL FINANCIAL GROUP INC
+- cik: 1164508
+  name: ARROWSTREET CAPITAL, LIMITED PARTNERSHIP
+- cik: 200217
+  name: Dodge & Cox
+- cik: 1582202
+  name: Swiss National Bank
+- cik: 713676
+  name: PNC FINANCIAL SERVICES GROUP, INC.
+- cik: 873630
+  name: HSBC HOLDINGS PLC
+- cik: 919079
+  name: California Public Employees Retirement System
+- cik: 1141802
+  name: NORTHWESTERN MUTUAL WEALTH MANAGEMENT CO
+- cik: 831001
+  name: CITIGROUP INC
+- cik: 1040188
+  name: VICTORY CAPITAL MANAGEMENT INC
+- cik: 1283718
+  name: CANADA PENSION PLAN INVESTMENT BOARD
+- cik: 1475365
+  name: Sumitomo Mitsui Trust Group, Inc.
+- cik: 1166588
+  name: BNP PARIBAS FINANCIAL MARKETS
+- cik: 1466546
+  name: Mitsubishi UFJ Asset Management Co., Ltd.
+- cik: 1540235
+  name: Creative Planning
+- cik: 53417
+  name: JENNISON ASSOCIATES LLC
+- cik: 1423053
+  name: CITADEL ADVISORS LLC
+- cik: 1125816
+  name: FIRST TRUST ADVISORS LP
+- cik: 1273087
+  name: MILLENNIUM MANAGEMENT LLC
+- cik: 1608046
+  name: National Pension Service
+- cik: 1465109
+  name: ' NEUBERGER BERMAN GROUP LLC'
+- cik: 318989
+  name: FIL Ltd
+- cik: 763212
+  name: PRIMECAP MANAGEMENT CO/CA/
+- cik: 1009207
+  name: D. E. Shaw & Co., Inc.
+- cik: 315032
+  name: STATE FARM MUTUAL AUTOMOBILE INSURANCE CO
+- cik: 1056053
+  name: TD Asset Management Inc
+- cik: 1086619
+  name: SCHRODER INVESTMENT MANAGEMENT GROUP
+- cik: 1179392
+  name: TWO SIGMA INVESTMENTS, LP
+- cik: 1115418
+  name: RHUMBLINE ADVISERS
+- cik: 928047
+  name: MANUFACTURERS LIFE INSURANCE COMPANY, THE
+- cik: 1348883
+  name: Clearbridge Investments, LLC
+- cik: 1694217
+  name: DZ BANK AG Deutsche Zentral Genossenschafts Bank, Frankfurt am Main
+- cik: 720672
+  name: STIFEL FINANCIAL CORP
+- cik: 350894
+  name: SEI INVESTMENTS CO
+- cik: 1218210
+  name: NORDEA INVESTMENT MANAGEMENT AB
+- cik: 1088875
+  name: BAILLIE GIFFORD & CO
+- cik: 926171
+  name: NATIONAL BANK OF CANADA /FI/
+- cik: 1068837
+  name: VOYA INVESTMENT MANAGEMENT LLC
+- cik: 1386060
+  name: Boston Partners
+- cik: 946431
+  name: Swedbank AB
+- cik: 1993888
+  name: Pictet Asset Management Holding SA
+- cik: 1081019
+  name: CALIFORNIA STATE TEACHERS RETIREMENT SYSTEM
+- cik: 1462245
+  name: HighTower Advisors, LLC
+- cik: 1666741
+  name: Cetera Investment Advisers
+- cik: 1318757
+  name: MARSHALL WACE, LLP
+- cik: 1595888
+  name: JANE STREET GROUP, LLC
+- cik: 1692234
+  name: Russell Investments Group, Ltd.
+- cik: 1542153
+  name: Focus Partners Wealth
+- cik: 1535323
+  name: Allianz Asset Management GmbH
+- cik: 1520354
+  name: BNP PARIBAS ASSET MANAGEMENT Holding S.A.
+- cik: 1373442
+  name: Mariner, LLC
+- cik: 316011
+  name: ' LILLY ENDOWMENT INC'
+- cik: 1508097
+  name: Sanders Capital, LLC
+- cik: 919859
+  name: MACKENZIE FINANCIAL CORP
+- cik: 36104
+  name: US BANCORP \DE\
+- cik: 1137774
+  name: PRUDENTIAL FINANCIAL INC
+- cik: 1446194
+  name: SUSQUEHANNA INTERNATIONAL GROUP, LLP
+- cik: 944388
+  name: 1832 Asset Management L.P.
+- cik: 813917
+  name: ' HARRIS ASSOCIATES L P'

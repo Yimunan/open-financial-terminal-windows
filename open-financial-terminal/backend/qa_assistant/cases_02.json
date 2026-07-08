@@ -1,0 +1,7 @@
+[
+  {"q": "Compare AAPL and MSFT performance this quarter.", "symbol": "AAPL"},
+  {"q": "Show me the top value stocks in the sp500.", "symbol": "AAPL"},
+  {"q": "Is now a good time to buy AAPL?", "symbol": "AAPL"},
+  {"q": "Which is the best low-volatility name in the nasdaq100?", "symbol": "AAPL"},
+  {"q": "How does NVDA compare to AMD and INTC year to date?", "symbol": "NVDA"}
+]

@@ -1,0 +1,7 @@
+name: crypto_majors
+instruments:
+  - { id: "BTC/USDT", asset_class: crypto, exchange: binance, quote_currency: USDT }
+  - { id: "ETH/USDT", asset_class: crypto, exchange: binance, quote_currency: USDT }
+  - { id: "SOL/USDT", asset_class: crypto, exchange: binance, quote_currency: USDT }
+  - { id: "BNB/USDT", asset_class: crypto, exchange: binance, quote_currency: USDT }
+  - { id: "XRP/USDT", asset_class: crypto, exchange: binance, quote_currency: USDT }

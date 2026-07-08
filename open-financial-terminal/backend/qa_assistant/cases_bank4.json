@@ -1,0 +1,10 @@
+[
+  {"q": "Which is riskier by beta, JPM or BAC?", "symbol": "JPM"},
+  {"q": "Is Goldman Sachs trading near its 52-week high?", "symbol": "GS"},
+  {"q": "JPM's dividend yield is about 8%, right?", "symbol": "JPM"},
+  {"q": "Has Bitcoin outperformed JPM this year?", "symbol": "JPM"},
+  {"q": "Give me a full profile of Citigroup.", "symbol": "C"},
+  {"q": "Which Dow 30 bank is the biggest by market cap?", "symbol": "JPM"},
+  {"q": "How did Wells Fargo do last month?", "symbol": "WFC"},
+  {"q": "What's the difference between JPM and Goldman Sachs as businesses?", "symbol": "JPM"}
+]

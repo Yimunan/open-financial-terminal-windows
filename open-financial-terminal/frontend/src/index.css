@@ -1,0 +1,234 @@
+@import "dockview/dist/styles/dockview.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide the browser's native password reveal/clear controls (Edge/Chromium on Windows). They only
+   appear while the field is focused and vanish on blur, overlapping our custom Show/Hide toggle —
+   suppress them so the custom button is the single, consistent control (focused or blurred). */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+/* ── Design conventions (apply by hand; not enforced by tooling) ──────────────
+ * Spacing rhythm:  compact rows  px-2 py-1
+ *                  buttons/pills px-2.5 py-1
+ *                  tabs/menu     px-3 py-1.5
+ * Opacity ladder:  tint bg /10 · tint bg strong /20 · border /50 · dim element /40
+ * Elevation:       shadow-elev-1 (header) · -2 (popovers/menus) · -3 (modals)
+ * Focus:           add `.focus-ring` to every interactive element (a11y)
+ * ──────────────────────────────────────────────────────────────────────────── */
+@layer components {
+  .focus-ring {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-term-accent/70 focus-visible:ring-offset-1 focus-visible:ring-offset-term-bg;
+  }
+}
+
+/* ── Theme tokens (RGB triplets so Tailwind can apply alpha) ─────────────────── */
+/* Surface tokens (elev/sunken/shadow) and chart series tokens are theme-neutral:
+   they live in the dark + light base blocks only. The [data-scheme="cn"] blocks
+   below intentionally flip just --term-up/--term-down. */
+:root[data-theme="dark"] {
+  --term-bg: 13 17 23;        /* #0d1117 */
+  --term-panel: 17 22 31;     /* #11161f */
+  --term-elev: 23 30 41;      /* raised: header, active tabs, dialogs, popovers */
+  --term-sunken: 10 13 18;    /* inset: inputs, code areas, gutters */
+  --term-border: 31 39 51;    /* #1f2733 */
+  --term-text: 214 221 232;   /* #d6dde8 */
+  --term-muted: 107 118 137;  /* #6b7689 */
+  --term-accent: 227 160 8;   /* #e3a008 */
+  --term-up: 38 166 154;      /* #26a69a */
+  --term-down: 239 83 80;     /* #ef5350 */
+  --term-shadow: 0 0 0;       /* shadow base, tints per theme */
+  /* chart overlay line colors (read via seriesColors() in ChartWidget) */
+  --term-series-1: 79 156 249;  /* #4f9cf9 */
+  --term-series-2: 167 139 250; /* #a78bfa */
+  --term-series-3: 244 114 182; /* #f472b6 */
+  --term-series-4: 52 211 153;  /* #34d399 */
+  --term-series-5: 251 146 60;  /* #fb923c */
+  --term-series-6: 227 160 8;   /* #e3a008 */
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --term-bg: 244 246 249;     /* #f4f6f9 */
+  --term-panel: 255 255 255;
+  --term-elev: 250 251 253;   /* raised */
+  --term-sunken: 238 241 246; /* inset */
+  --term-border: 221 226 235; /* #dde2eb */
+  --term-text: 26 33 44;      /* #1a212c */
+  --term-muted: 100 112 131;  /* #647083 */
+  --term-accent: 180 83 9;    /* #b45309 */
+  --term-up: 14 138 109;      /* #0e8a6d */
+  --term-down: 211 47 47;     /* #d32f2f */
+  --term-shadow: 15 23 42;    /* slate, tints per theme */
+  --term-series-1: 37 99 235;   /* #2563eb */
+  --term-series-2: 124 58 237;  /* #7c3aed */
+  --term-series-3: 219 39 119;  /* #db2777 */
+  --term-series-4: 5 150 105;   /* #059669 */
+  --term-series-5: 234 88 12;   /* #ea580c */
+  --term-series-6: 180 83 9;    /* #b45309 */
+  color-scheme: light;
+}
+
+/* CN candle convention: red = up, green = down. Swapping the tokens here flips the
+   entire terminal consistently — candles, flash cells, order book, P&L text. */
+:root[data-theme="dark"][data-scheme="cn"] {
+  --term-up: 239 83 80;       /* #ef5350 */
+  --term-down: 38 166 154;    /* #26a69a */
+}
+:root[data-theme="light"][data-scheme="cn"] {
+  --term-up: 211 47 47;       /* #d32f2f */
+  --term-down: 14 138 109;    /* #0e8a6d */
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  @apply bg-term-bg text-term-text;
+  font-family: "Inter Variable", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 13px;
+}
+
+/* Non-jittering digits everywhere (tabular) + unambiguous slashed zero so 0 ≠ O in
+   tickers/prices. True mono is opt-in via .font-mono. */
+* {
+  font-variant-numeric: tabular-nums slashed-zero;
+}
+
+/* ── Price flash (cells re-trigger by remounting with a key bump) ────────────── */
+@keyframes flash-up {
+  from { background-color: rgb(var(--term-up) / 0.35); }
+  to { background-color: transparent; }
+}
+@keyframes flash-down {
+  from { background-color: rgb(var(--term-down) / 0.35); }
+  to { background-color: transparent; }
+}
+.flash-up { animation: flash-up 0.7s ease-out; }
+.flash-down { animation: flash-down 0.7s ease-out; }
+
+/* ── Skeleton shimmer ────────────────────────────────────────────────────────── */
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+.skeleton {
+  border-radius: 3px;
+  background: linear-gradient(
+    90deg,
+    rgb(var(--term-border) / 0.6) 25%,
+    rgb(var(--term-border) / 0.25) 50%,
+    rgb(var(--term-border) / 0.6) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+/* ── Newly-arrived news rows roll in with a fading accent ────────────────────── */
+@keyframes news-in {
+  from { background-color: rgb(var(--term-accent) / 0.18); }
+  to { background-color: transparent; }
+}
+.news-new {
+  animation: news-in 3s ease-out;
+  box-shadow: inset 2px 0 0 rgb(var(--term-accent));
+}
+
+/* ── Whale prints on the tape ────────────────────────────────────────────────── */
+.whale {
+  text-shadow: 0 0 8px rgb(var(--term-accent) / 0.9);
+  color: rgb(var(--term-accent));
+  font-weight: 600;
+}
+
+/* ── Dockview theme bridge: map dockview's variables onto our tokens ─────────── */
+.oft-dockview {
+  --dv-background-color: rgb(var(--term-bg));
+  --dv-paneview-active-outline-color: rgb(var(--term-accent));
+  --dv-tabs-and-actions-container-background-color: rgb(var(--term-bg));
+  --dv-activegroup-visiblepanel-tab-background-color: rgb(var(--term-elev));
+  --dv-activegroup-hiddenpanel-tab-background-color: rgb(var(--term-bg));
+  --dv-inactivegroup-visiblepanel-tab-background-color: rgb(var(--term-panel) / 0.7);
+  --dv-inactivegroup-hiddenpanel-tab-background-color: rgb(var(--term-bg));
+  --dv-tab-divider-color: rgb(var(--term-border));
+  --dv-activegroup-visiblepanel-tab-color: rgb(var(--term-text));
+  --dv-activegroup-hiddenpanel-tab-color: rgb(var(--term-muted));
+  --dv-inactivegroup-visiblepanel-tab-color: rgb(var(--term-muted));
+  --dv-inactivegroup-hiddenpanel-tab-color: rgb(var(--term-muted));
+  --dv-separator-border: rgb(var(--term-border));
+  --dv-paneview-header-border-color: rgb(var(--term-border));
+  --dv-group-view-background-color: rgb(var(--term-panel));
+  --dv-tabs-container-scrollbar-color: rgb(var(--term-muted));
+  --dv-icon-hover-background-color: rgb(var(--term-border));
+  --dv-floating-box-shadow: 0 12px 32px rgb(var(--term-shadow) / 0.45);
+  --dv-active-sash-color: rgb(var(--term-accent));
+  --dv-active-sash-transition-delay: 0s; /* instant highlight on hover (was a laggy 0.5s default) */
+  --dv-drag-over-background-color: rgb(var(--term-accent) / 0.15);
+  --dv-drag-over-border-color: rgb(var(--term-accent));
+  --dv-tabs-and-actions-container-font-size: 12px;
+  --dv-tabs-and-actions-container-height: 30px;
+}
+
+/* Solo mode: a single widget popped into its own OS window (workspace/SoloWorkspace.tsx). Hide the
+ * lone tab bar and the corner grip so it reads as a clean full-window widget (the OS window frame
+ * already carries the title, and resizing is done by the window itself). */
+.oft-solo .dv-tabs-and-actions-container {
+  display: none;
+}
+.oft-solo .oft-resize-grip {
+  display: none;
+}
+
+/* Widen the 4px edge dividers' grab area (±4px) without moving the centered handle. */
+.oft-dockview .dv-sash::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+}
+
+/* Corner resize grip (workspace/ResizeGrip.tsx): faded until the panel is hovered, accent when grabbed. */
+.oft-resize-grip {
+  color: rgb(var(--term-border));
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+.oft-panel-wrap:hover > .oft-resize-grip {
+  opacity: 0.55;
+}
+.oft-resize-grip:hover {
+  opacity: 1;
+  color: rgb(var(--term-accent));
+}
+
+/* ── Scrollbars in the terminal spirit ───────────────────────────────────────── */
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: rgb(var(--term-border)); border-radius: 4px; }
+*::-webkit-scrollbar-track { background: transparent; }
+
+/* Hide the scrollbar while keeping wheel/touch scrolling — used in the chat box so no grey bar shows. */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* ── cmdk dialog ─────────────────────────────────────────────────────────────── */
+[cmdk-overlay] {
+  position: fixed;
+  inset: 0;
+  background: rgb(0 0 0 / 0.5);
+  z-index: 50;
+}
+[cmdk-dialog] {
+  position: fixed;
+  top: 18vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(640px, 92vw);
+  z-index: 51;
+}

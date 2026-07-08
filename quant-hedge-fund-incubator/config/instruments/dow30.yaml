@@ -1,0 +1,35 @@
+name: dow30
+# Dow Jones Industrial Average (30). All are S&P 500 members → data already cached in
+# data/equity_pool (no separate pull needed). GICS sectors hand-assigned; note Visa (V) is
+# GICS Financials since the 2023 reclassification of payment processors.
+instruments:
+  - {id: AAPL, asset_class: equity, equity: {gics_sector: Information Technology}}
+  - {id: AMZN, asset_class: equity, equity: {gics_sector: Consumer Discretionary}}
+  - {id: AMGN, asset_class: equity, equity: {gics_sector: Health Care}}
+  - {id: AXP,  asset_class: equity, equity: {gics_sector: Financials}}
+  - {id: BA,   asset_class: equity, equity: {gics_sector: Industrials}}
+  - {id: CAT,  asset_class: equity, equity: {gics_sector: Industrials}}
+  - {id: CRM,  asset_class: equity, equity: {gics_sector: Information Technology}}
+  - {id: CSCO, asset_class: equity, equity: {gics_sector: Information Technology}}
+  - {id: CVX,  asset_class: equity, equity: {gics_sector: Energy}}
+  - {id: DIS,  asset_class: equity, equity: {gics_sector: Communication Services}}
+  - {id: GS,   asset_class: equity, equity: {gics_sector: Financials}}
+  - {id: HD,   asset_class: equity, equity: {gics_sector: Consumer Discretionary}}
+  - {id: HON,  asset_class: equity, equity: {gics_sector: Industrials}}
+  - {id: IBM,  asset_class: equity, equity: {gics_sector: Information Technology}}
+  - {id: JNJ,  asset_class: equity, equity: {gics_sector: Health Care}}
+  - {id: JPM,  asset_class: equity, equity: {gics_sector: Financials}}
+  - {id: KO,   asset_class: equity, equity: {gics_sector: Consumer Staples}}
+  - {id: MCD,  asset_class: equity, equity: {gics_sector: Consumer Discretionary}}
+  - {id: MMM,  asset_class: equity, equity: {gics_sector: Industrials}}
+  - {id: MRK,  asset_class: equity, equity: {gics_sector: Health Care}}
+  - {id: MSFT, asset_class: equity, equity: {gics_sector: Information Technology}}
+  - {id: NKE,  asset_class: equity, equity: {gics_sector: Consumer Discretionary}}
+  - {id: NVDA, asset_class: equity, equity: {gics_sector: Information Technology}}
+  - {id: PG,   asset_class: equity, equity: {gics_sector: Consumer Staples}}
+  - {id: SHW,  asset_class: equity, equity: {gics_sector: Materials}}
+  - {id: TRV,  asset_class: equity, equity: {gics_sector: Financials}}
+  - {id: UNH,  asset_class: equity, equity: {gics_sector: Health Care}}
+  - {id: V,    asset_class: equity, equity: {gics_sector: Financials}}
+  - {id: VZ,   asset_class: equity, equity: {gics_sector: Communication Services}}
+  - {id: WMT,  asset_class: equity, equity: {gics_sector: Consumer Staples}}

@@ -1,0 +1,29 @@
+# Secrets — NEVER commit
+.env
+.env.*
+!.env.example
+*.key
+secret.key
+
+# Large binaries — the installer ships as a GitHub Release asset, not in the repo
+*.exe
+*.dmg
+dist_installer/
+dist_desktop/
+build_desktop/
+
+# Build outputs / venvs
+dist/
+.venv*/
+venv/
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

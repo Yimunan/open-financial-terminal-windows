@@ -1,0 +1,1234 @@
+name: nasdaq100
+instruments:
+- id: AAPL
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: ABNB
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Discretionary
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: ADBE
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: ADI
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: ADP
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Industrials
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: ADSK
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: AEP
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Utilities
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: AMAT
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: AMD
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: AMGN
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Health Care
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: AMZN
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Discretionary
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: ARM
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: ASML
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: AVGO
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: BIIB
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Health Care
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: BKNG
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Discretionary
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: CCEP
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Staples
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: CDNS
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: CDW
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: CHTR
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Communication Services
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: CMCSA
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Communication Services
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: COST
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Staples
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: CPRT
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Industrials
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: CRWD
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: CSCO
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: CSGP
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Real Estate
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: CSX
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Industrials
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: CTAS
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Industrials
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: CTSH
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: DASH
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Discretionary
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: DLTR
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Staples
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: DXCM
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Health Care
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: EA
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Communication Services
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: EXC
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Utilities
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: FAST
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Industrials
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: FTNT
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: GEHC
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Health Care
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: GFS
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: GILD
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Health Care
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: GOOG
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Communication Services
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: GOOGL
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Communication Services
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: HON
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Industrials
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: INTC
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: INTU
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: ISRG
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Health Care
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: KDP
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Staples
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: KHC
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Staples
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: KLAC
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: LIN
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Materials
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: LRCX
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: LULU
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Discretionary
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: MAR
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Discretionary
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: MDB
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: MELI
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Discretionary
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: META
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Communication Services
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: MNST
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Staples
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: MRVL
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: MSFT
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: MU
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: NFLX
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Communication Services
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: NVDA
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: NXPI
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: ODFL
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Industrials
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: 'ON'
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: ORLY
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Discretionary
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: PANW
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: PAYX
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Industrials
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: PCAR
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Industrials
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: PDD
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Discretionary
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: PEP
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Staples
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: PYPL
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Financials
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: QCOM
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: REGN
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Health Care
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: ROP
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: ROST
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Discretionary
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: SBUX
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Discretionary
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: SNPS
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: TEAM
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: TMUS
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Communication Services
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: TSLA
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Consumer Discretionary
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: TTD
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Communication Services
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: TXN
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: VRSK
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Industrials
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: VRTX
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Health Care
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: WBD
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Communication Services
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: WDAY
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: XEL
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Utilities
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365
+- id: ZS
+  asset_class: equity
+  form: cash
+  exchange: ''
+  quote_currency: USD
+  equity:
+    gics_sector: Information Technology
+    country: US
+    index_membership: []
+  tick_size: 0.01
+  lot_size: 1.0
+  contract_multiplier: 1.0
+  shortable: true
+  day_count: ACT/365

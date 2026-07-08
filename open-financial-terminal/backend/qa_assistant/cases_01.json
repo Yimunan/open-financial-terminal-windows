@@ -1,0 +1,12 @@
+[
+  {"q": "How has AAPL performed over the last 3 months?", "symbol": "AAPL"},
+  {"q": "Any recent news on AAPL?", "symbol": "AAPL"},
+  {"q": "What is AAPL's P/E ratio and market cap?", "symbol": "AAPL"},
+  {"q": "Compare AAPL and MSFT performance this quarter.", "symbol": "AAPL"},
+  {"q": "Show me the top momentum stocks in the dow30.", "symbol": "AAPL"},
+  {"q": "What's BTC doing right now?", "symbol": "BTC/USDT"},
+  {"q": "What is a good Sharpe ratio for a strategy?", "symbol": "AAPL"},
+  {"q": "What can you do? What are you connected to?", "symbol": "AAPL"},
+  {"q": "Is now a good time to buy AAPL?", "symbol": "AAPL"},
+  {"q": "Summarize today's market action for me.", "symbol": "SPY"}
+]

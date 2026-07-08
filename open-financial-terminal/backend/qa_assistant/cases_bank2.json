@@ -1,0 +1,10 @@
+[
+  {"q": "Which bank has the highest ROE: JPM, BAC, WFC or C?", "symbol": "JPM"},
+  {"q": "Compare the dividend yields of JPM, BAC and WFC.", "symbol": "JPM"},
+  {"q": "Rank the dow30 banks by value.", "symbol": "JPM"},
+  {"q": "What's Goldman Sachs' P/B ratio?", "symbol": "GS"},
+  {"q": "Any recent news on Wells Fargo?", "symbol": "WFC"},
+  {"q": "How has Citigroup done year to date?", "symbol": "C"},
+  {"q": "Is JPM expensive compared to the other big banks?", "symbol": "JPM"},
+  {"q": "Should I buy Bank of America?", "symbol": "BAC"}
+]

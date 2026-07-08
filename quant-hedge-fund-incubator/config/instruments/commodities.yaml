@@ -1,0 +1,29 @@
+name: commodities
+# Commodity futures complex. AssetClass.COMMODITY + InstrumentForm.FUTURE → margined,
+# RiskBasis.NOTIONAL, CMES calendar. contract_multiplier = exchange point value ($ per 1.0 price
+# point); standard CME/COMEX/NYMEX/ICE values (continuous front-month; full ladder needs a vendor).
+instruments:
+  # --- metals (COMEX / NYMEX) ---
+  - {id: GC, asset_class: commodity, form: future, exchange: COMEX, contract_multiplier: 100}    # gold $/oz
+  - {id: SI, asset_class: commodity, form: future, exchange: COMEX, contract_multiplier: 5000}   # silver $/oz
+  - {id: HG, asset_class: commodity, form: future, exchange: COMEX, contract_multiplier: 25000}  # copper $/lb
+  - {id: PL, asset_class: commodity, form: future, exchange: NYMEX, contract_multiplier: 50}     # platinum $/oz
+  - {id: PA, asset_class: commodity, form: future, exchange: NYMEX, contract_multiplier: 100}    # palladium $/oz
+  # --- energy (NYMEX / ICE) ---
+  - {id: CL, asset_class: commodity, form: future, exchange: NYMEX, contract_multiplier: 1000}   # WTI crude $/bbl
+  - {id: BZ, asset_class: commodity, form: future, exchange: ICE,   contract_multiplier: 1000}   # Brent crude $/bbl
+  - {id: NG, asset_class: commodity, form: future, exchange: NYMEX, contract_multiplier: 10000}  # nat gas $/MMBtu
+  - {id: RB, asset_class: commodity, form: future, exchange: NYMEX, contract_multiplier: 42000}  # RBOB gasoline $/gal
+  - {id: HO, asset_class: commodity, form: future, exchange: NYMEX, contract_multiplier: 42000}  # heating oil $/gal
+  # --- grains (CBOT; price in cents → $50 per 1c point) ---
+  - {id: ZC, asset_class: commodity, form: future, exchange: CBOT, contract_multiplier: 50}      # corn
+  - {id: ZW, asset_class: commodity, form: future, exchange: CBOT, contract_multiplier: 50}      # wheat
+  - {id: ZS, asset_class: commodity, form: future, exchange: CBOT, contract_multiplier: 50}      # soybeans
+  # --- softs (ICE) ---
+  - {id: KC, asset_class: commodity, form: future, exchange: ICE, contract_multiplier: 375}      # coffee
+  - {id: SB, asset_class: commodity, form: future, exchange: ICE, contract_multiplier: 1120}     # sugar #11
+  - {id: CT, asset_class: commodity, form: future, exchange: ICE, contract_multiplier: 500}      # cotton
+  - {id: CC, asset_class: commodity, form: future, exchange: ICE, contract_multiplier: 10}       # cocoa $/ton
+  # --- livestock (CME) ---
+  - {id: LE, asset_class: commodity, form: future, exchange: CME, contract_multiplier: 400}      # live cattle
+  - {id: HE, asset_class: commodity, form: future, exchange: CME, contract_multiplier: 400}      # lean hogs

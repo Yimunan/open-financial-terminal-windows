@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1426" viewBox="0 0 1200 1426" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <style>
+      .title  { font-size: 27px; font-weight: 700; fill: #0f172a; }
+      .sub    { font-size: 14px; fill: #475569; }
+      .layer  { font-size: 13px; font-weight: 700; fill: #1e293b; letter-spacing: .4px; }
+      .mod    { font-size: 14px; font-weight: 600; fill: #0f172a; }
+      .modc   { font-size: 12.5px; font-weight: 600; fill: #0f172a; }
+      .desc   { font-size: 11px; fill: #475569; }
+      .chip   { font-size: 11.5px; font-weight: 600; fill: #0f172a; }
+      .note   { font-size: 11px; fill: #64748b; }
+      .pill   { font-size: 12px; font-weight: 600; fill: #ffffff; }
+      .arrow  { font-size: 18px; fill: #16a34a; }
+      .feeds  { font-size: 11px; font-weight: 700; fill: #7c3aed; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1200" height="1426" fill="#f8fafc"/>
+
+  <text x="40" y="48" class="title">Quant Hedge Fund Incubator — architecture</text>
+  <text x="40" y="72" class="sub">Multi-asset incl. FICC · daily/swing · vectorized · factor research · LLM agents · research + paper · 11 data domains · 22 sources · 224 tests green</text>
+  <text x="40" y="90" class="note">✓ = real, test-verified   ·   ◌ = typed stub (contract defined, body TODO)</text>
+
+  <!-- LIFECYCLE -->
+  <g transform="translate(40,102)">
+    <rect x="0" y="0" width="1120" height="52" rx="10" fill="#0f172a"/>
+    <text x="16" y="20" class="layer" fill="#e2e8f0">STRATEGY LIFECYCLE  (state machine — every transition gated by a recorded scorecard)</text>
+    <g transform="translate(16,28)">
+      <rect x="0"   y="0" width="78"  height="18" rx="9" fill="#6366f1"/><text x="39"  y="13" class="pill" text-anchor="middle">IDEA</text>
+      <rect x="92"  y="0" width="84"  height="18" rx="9" fill="#6366f1"/><text x="134" y="13" class="pill" text-anchor="middle">RESEARCH</text>
+      <rect x="190" y="0" width="100" height="18" rx="9" fill="#6366f1"/><text x="240" y="13" class="pill" text-anchor="middle">IMPLEMENTED</text>
+      <rect x="304" y="0" width="96"  height="18" rx="9" fill="#6366f1"/><text x="352" y="13" class="pill" text-anchor="middle">BACKTESTED</text>
+      <rect x="414" y="0" width="92"  height="18" rx="9" fill="#6366f1"/><text x="460" y="13" class="pill" text-anchor="middle">VALIDATED</text>
+      <rect x="520" y="0" width="70"  height="18" rx="9" fill="#22c55e"/><text x="555" y="13" class="pill" text-anchor="middle">PAPER</text>
+      <rect x="604" y="0" width="64"  height="18" rx="9" fill="#475569"/><text x="636" y="13" class="pill" text-anchor="middle">LIVE*</text>
+      <text x="682" y="13" class="note" fill="#94a3b8">*blocked in code (out of scope)</text>
+    </g>
+  </g>
+
+  <!-- CLI -->
+  <g transform="translate(40,166)">
+    <rect x="0" y="0" width="1120" height="46" rx="10" fill="#e0e7ff" stroke="#a5b4fc"/>
+    <text x="16" y="19" class="layer">CLI / ORCHESTRATION</text>
+    <text x="16" y="37" class="mod">qhfi  data · backtest · report · research · paper   <tspan class="desc">(Typer entrypoint ◌)   ·   scripts/: pull_universe · pull_edgar_fundamentals · pull_macro · pull_rates · pull_fx · pull_crypto_minute · pull_options · pull_geopolitics · demos</tspan></text>
+  </g>
+
+  <!-- RESEARCH AGENTS -->
+  <g transform="translate(40,224)">
+    <rect x="0" y="0" width="1120" height="78" rx="10" fill="#fae8ff" stroke="#e9b3f7"/>
+    <text x="16" y="20" class="layer">RESEARCH AGENTS (LLM — first-class)</text>
+    <g transform="translate(16,28)">
+      <rect x="0"   y="0" width="172" height="42" rx="8" fill="#ffffff" stroke="#d8b4fe"/><text x="12" y="18" class="modc">IdeationAgent ◌</text><text x="12" y="34" class="desc">theme → hypotheses</text>
+      <rect x="186" y="0" width="172" height="42" rx="8" fill="#ffffff" stroke="#d8b4fe"/><text x="198" y="18" class="modc">CodegenAgent ◌</text><text x="198" y="34" class="desc">drafts Strategy code</text>
+      <rect x="372" y="0" width="160" height="42" rx="8" fill="#ffffff" stroke="#d8b4fe"/><text x="384" y="18" class="modc">CriticAgent ◌</text><text x="384" y="34" class="desc">overfit / block gate</text>
+      <rect x="546" y="0" width="170" height="42" rx="8" fill="#ffffff" stroke="#d8b4fe"/><text x="558" y="18" class="modc">sandbox ◌</text><text x="558" y="34" class="desc">safe exec gen'd code</text>
+      <rect x="730" y="0" width="374" height="42" rx="8" fill="#f5d0fe" stroke="#d8b4fe"/><text x="742" y="18" class="modc">LLMClient ✓  → ApiRegistry → managed httpx</text><text x="742" y="34" class="desc">vLLM proxy :8001 · LangGraph :8082 · crewAI :8083</text>
+    </g>
+  </g>
+
+  <!-- INCUBATOR SERVICES -->
+  <g transform="translate(40,316)">
+    <rect x="0" y="0" width="1120" height="170" rx="10" fill="#dcfce7" stroke="#86efac"/>
+    <text x="16" y="20" class="layer">INCUBATOR SERVICES</text>
+    <g transform="translate(16,30)">
+      <rect x="0" y="0" width="158" height="50" rx="8" fill="#ffffff" stroke="#86efac"/><text x="12" y="20" class="mod">strategy ✓</text><text x="12" y="38" class="desc">contract + FactorStrategy</text>
+      <text x="166" y="30" class="arrow">▶</text>
+      <rect x="184" y="0" width="158" height="50" rx="8" fill="#bbf7d0" stroke="#22c55e"/><text x="196" y="20" class="mod">backtest ✓</text><text x="196" y="38" class="desc">granular engine + WF-OOS</text>
+      <text x="350" y="30" class="arrow">▶</text>
+      <rect x="368" y="0" width="158" height="50" rx="8" fill="#bbf7d0" stroke="#22c55e"/><text x="380" y="20" class="mod">evaluation ✓</text><text x="380" y="38" class="desc">metrics + scorecard</text>
+      <text x="534" y="30" class="arrow">▶</text>
+      <rect x="552" y="0" width="158" height="50" rx="8" fill="#ffffff" stroke="#86efac"/><text x="564" y="20" class="mod">registry</text><text x="564" y="38" class="desc">lifecycle ✓ · db ◌</text>
+      <rect x="736" y="0" width="368" height="50" rx="8" fill="#bbf7d0" stroke="#22c55e"/><text x="748" y="20" class="mod">models ✓  — ModelRepository</text><text x="748" y="38" class="desc">versioned artifacts · cards · dev→staging→production→archived</text>
+    </g>
+    <g transform="translate(16,92)">
+      <rect x="0" y="0" width="240" height="50" rx="8" fill="#bbf7d0" stroke="#22c55e"/><text x="12" y="20" class="mod">portfolio ✓</text><text x="12" y="38" class="desc">allocator ◌ · CompositeSizing (DV01/notional)</text>
+      <rect x="260" y="0" width="190" height="50" rx="8" fill="#ffffff" stroke="#86efac"/><text x="272" y="20" class="mod">risk ◌</text><text x="272" y="38" class="desc">pre-trade gates + kill-switch</text>
+      <rect x="466" y="0" width="190" height="50" rx="8" fill="#ffffff" stroke="#86efac"/><text x="478" y="20" class="mod">trading ◌</text><text x="478" y="38" class="desc">daily paper loop</text>
+      <rect x="672" y="0" width="432" height="50" rx="8" fill="#dcfce7" stroke="#86efac" stroke-dasharray="4 3"/><text x="684" y="20" class="mod">backtest/validation ✓</text><text x="684" y="38" class="desc">walk-forward + purged OOS → scorecard robustness gate</text>
+    </g>
+  </g>
+
+  <!-- FACTOR RESEARCH -->
+  <g transform="translate(40,500)">
+    <rect x="0" y="0" width="1120" height="92" rx="10" fill="#ede9fe" stroke="#c4b5fd"/>
+    <text x="16" y="20" class="layer">FACTOR RESEARCH ✓  <tspan class="note" fill="#7c3aed">(between core and strategy)</tspan></text>
+    <text x="16" y="37" class="desc">library: momentum · volatility · reversal (price) ✓   ·   value · quality (FundamentalFactor, PIT) ✓   ·   carry ◌</text>
+    <g transform="translate(16,46)">
+      <rect x="0"   y="0" width="150" height="34" rx="7" fill="#ffffff" stroke="#c4b5fd"/><text x="75"  y="21" class="modc" text-anchor="middle">Factor.compute</text>
+      <text x="152" y="22" class="feeds">▶</text>
+      <rect x="168" y="0" width="330" height="34" rx="7" fill="#ddd6fe" stroke="#a78bfa"/><text x="333" y="21" class="modc" text-anchor="middle">winsorize → zscore/rank → neutralize → combine</text>
+      <text x="500" y="22" class="feeds">▶</text>
+      <rect x="516" y="0" width="150" height="34" rx="7" fill="#ffffff" stroke="#c4b5fd"/><text x="591" y="21" class="modc" text-anchor="middle">FactorStrategy</text>
+      <text x="668" y="22" class="feeds">▶</text>
+      <rect x="684" y="0" width="140" height="34" rx="7" fill="#fef9c3" stroke="#fde047"/><text x="754" y="21" class="modc" text-anchor="middle">TargetWeights</text>
+      <rect x="842" y="0" width="262" height="34" rx="7" fill="#c4b5fd" stroke="#a78bfa"/><text x="853" y="21" class="modc">screen: IC · quantile · decay · turnover</text>
+    </g>
+  </g>
+
+  <!-- ABSTRACT CORE -->
+  <g transform="translate(40,600)">
+    <rect x="0" y="0" width="1120" height="66" rx="10" fill="#fef9c3" stroke="#fde047"/>
+    <text x="16" y="20" class="layer">ABSTRACT CORE — taxonomy (asset-class agnostic)</text>
+    <text x="16" y="40" class="mod">AssetClass {equity·rates·credit·fx·commodity·crypto} × InstrumentForm {cash·etf·future·perp·forward·swap}</text>
+    <text x="16" y="58" class="desc">→ derives is_margined (variation-margin vs cash) · RiskBasis (DV01 vs notional) · calendar · EquityMeta (GICS) · Bars · TargetWeights ✓</text>
+  </g>
+
+  <!-- DATA MANAGEMENT -->
+  <g transform="translate(40,674)">
+    <rect x="0" y="0" width="1120" height="84" rx="10" fill="#cffafe" stroke="#67e8f9"/>
+    <text x="16" y="20" class="layer">DATA MANAGEMENT ✓</text>
+    <g transform="translate(16,28)">
+      <rect x="0"   y="0" width="250" height="46" rx="8" fill="#ffffff" stroke="#67e8f9"/><text x="12" y="19" class="mod">DataManager</text><text x="12" y="37" class="desc">routing · incremental refresh · catalog</text>
+      <rect x="266" y="0" width="230" height="46" rx="8" fill="#ffffff" stroke="#67e8f9"/><text x="278" y="19" class="mod">quality.validate_bars</text><text x="278" y="37" class="desc">fatal vs warning at ingestion</text>
+      <rect x="512" y="0" width="260" height="46" rx="8" fill="#ffffff" stroke="#67e8f9"/><text x="524" y="19" class="mod">taxonomy.DATASETS</text><text x="524" y="37" class="desc">domain·freq·PIT·zone·source·status (17 sets · 22 srcs)</text>
+      <rect x="788" y="0" width="316" height="46" rx="8" fill="#ecfeff" stroke="#67e8f9"/><text x="800" y="19" class="mod">universes = views</text><text x="800" y="37" class="desc">dow30 · nasdaq100 · sp500 · nasdaq_composite · fx_majors · crypto_majors · rates_futures</text>
+    </g>
+  </g>
+
+  <!-- DATA LAKE + PROVIDERS -->
+  <g transform="translate(40,774)">
+    <rect x="0" y="0" width="1120" height="172" rx="10" fill="#e0f2fe" stroke="#7dd3fc"/>
+    <text x="16" y="20" class="layer">DATA LAKE  —  data/lake/&lt;domain&gt;/&lt;asset_class&gt;/&lt;source&gt;/&lt;id&gt;.parquet  (taxonomy-partitioned, instrument stored once)</text>
+    <!-- category row 1 -->
+    <g transform="translate(16,28)">
+      <rect x="0"   y="0" width="234" height="32" rx="7" fill="#ffffff" stroke="#7dd3fc"/><text x="12" y="21" class="modc">market ✓  4,620 (eq·fx·rates·crypto)</text>
+      <rect x="246" y="0" width="196" height="32" rx="7" fill="#ffffff" stroke="#7dd3fc"/><text x="258" y="21" class="modc">fundamental ✓  952 (PIT)</text>
+      <rect x="454" y="0" width="150" height="32" rx="7" fill="#ffffff" stroke="#7dd3fc"/><text x="466" y="21" class="modc">xbrl ✓  104 (SEC)</text>
+      <rect x="616" y="0" width="170" height="32" rx="7" fill="#ffffff" stroke="#7dd3fc"/><text x="628" y="21" class="modc">filings ✓  514 (10-Q/K)</text>
+      <rect x="798" y="0" width="138" height="32" rx="7" fill="#ffffff" stroke="#7dd3fc"/><text x="810" y="21" class="modc">statements ✓ 624</text>
+      <rect x="948" y="0" width="140" height="32" rx="7" fill="#ffffff" stroke="#7dd3fc"/><text x="960" y="21" class="modc">macro ✓  37 series</text>
+    </g>
+    <!-- category row 2 -->
+    <g transform="translate(16,64)">
+      <rect x="0"   y="0" width="150" height="32" rx="7" fill="#ffffff" stroke="#7dd3fc"/><text x="12" y="21" class="modc">rates ✓  UST curve</text>
+      <rect x="162" y="0" width="250" height="32" rx="7" fill="#ffffff" stroke="#7dd3fc"/><text x="174" y="21" class="modc">intraday_1m ✓ · orderbook ✓ (okx)</text>
+      <rect x="424" y="0" width="196" height="32" rx="7" fill="#ffffff" stroke="#7dd3fc"/><text x="436" y="21" class="modc">options ✓  14 (equity chains)</text>
+      <rect x="632" y="0" width="242" height="32" rx="7" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/><text x="644" y="21" class="modc" fill="#1d4ed8">geopolitics ✓  50 (GPR·GDELT) ◀ new</text>
+      <rect x="886" y="0" width="202" height="32" rx="7" fill="#f1f5f9" stroke="#cbd5e1" stroke-dasharray="4 3"/><text x="898" y="21" class="modc" fill="#94a3b8">reference / carry / derived ◌</text>
+    </g>
+    <!-- providers -->
+    <g transform="translate(16,106)">
+      <text x="0" y="16" class="layer">PROVIDERS</text>
+      <rect x="92"  y="0" width="120" height="24" rx="6" fill="#ffffff" stroke="#7dd3fc"/><text x="152" y="16" class="chip" text-anchor="middle">crypto · ccxt ✓</text>
+      <rect x="222" y="0" width="246" height="24" rx="6" fill="#ffffff" stroke="#7dd3fc"/><text x="345" y="16" class="chip" text-anchor="middle">equities · options · FX · yfinance ✓</text>
+      <rect x="478" y="0" width="262" height="24" rx="6" fill="#ffffff" stroke="#7dd3fc"/><text x="609" y="16" class="chip" text-anchor="middle">fundamentals · EDGAR + yfinance (PIT) ✓</text>
+      <rect x="750" y="0" width="210" height="24" rx="6" fill="#ffffff" stroke="#7dd3fc"/><text x="855" y="16" class="chip" text-anchor="middle">SEC EDGAR · filings + xbrl ✓</text>
+      <rect x="970" y="0" width="118" height="24" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-dasharray="4 3"/><text x="1029" y="16" class="chip" text-anchor="middle" fill="#94a3b8">futures · IB ◌</text>
+    </g>
+    <!-- providers row 2 -->
+    <g transform="translate(16,138)">
+      <rect x="92"  y="0" width="330" height="24" rx="6" fill="#ffffff" stroke="#7dd3fc"/><text x="257" y="16" class="chip" text-anchor="middle">macro · DBnomics + FRED + World Bank ✓</text>
+      <rect x="432" y="0" width="186" height="24" rx="6" fill="#ffffff" stroke="#7dd3fc"/><text x="525" y="16" class="chip" text-anchor="middle">rates · FRED + yfinance ✓</text>
+      <rect x="628" y="0" width="332" height="24" rx="6" fill="#ffffff" stroke="#7dd3fc"/><text x="794" y="16" class="chip" text-anchor="middle">geopolitics · GPR (Caldara-Iacoviello) + GDELT 2.0 ✓</text>
+      <text x="976" y="16" class="note">normalize · split/div-adjust · PIT lag</text>
+    </g>
+  </g>
+
+  <!-- API MANAGEMENT -->
+  <g transform="translate(40,962)">
+    <rect x="0" y="0" width="1120" height="70" rx="10" fill="#fef3c7" stroke="#fcd34d"/>
+    <text x="16" y="20" class="layer">OUTBOUND API MANAGEMENT ✓  <tspan class="note" fill="#b45309">(cross-cutting — every external call: exchanges · vendors · LLM stack)</tspan></text>
+    <g transform="translate(16,28)">
+      <rect x="0" y="0" width="640" height="34" rx="7" fill="#ffffff" stroke="#fcd34d"/>
+      <text x="14" y="22" class="modc">ManagedClient:  cache → retry(backoff) → rate-limit → circuit-breaker → fn</text>
+      <rect x="656" y="0" width="200" height="34" rx="7" fill="#ffffff" stroke="#fcd34d"/><text x="666" y="22" class="modc">ManagedHttpClient (httpx)</text>
+      <rect x="872" y="0" width="232" height="34" rx="7" fill="#ffffff" stroke="#fcd34d"/><text x="882" y="22" class="modc">ApiRegistry (endpoints + creds)</text>
+    </g>
+  </g>
+
+  <!-- EXECUTION -->
+  <g transform="translate(40,1046)">
+    <rect x="0" y="0" width="1120" height="64" rx="10" fill="#ffedd5" stroke="#fdba74"/>
+    <text x="16" y="20" class="layer">EXECUTION  (paper only — Broker protocol; same interface a gated-live adapter would use)</text>
+    <g transform="translate(16,28)">
+      <rect x="0"   y="0" width="180" height="26" rx="6" fill="#ffffff" stroke="#fdba74"/><text x="90"  y="18" class="chip" text-anchor="middle">PaperBroker ◌</text>
+      <rect x="196" y="0" width="190" height="26" rx="6" fill="#ffffff" stroke="#fdba74"/><text x="291" y="18" class="chip" text-anchor="middle">AlpacaPaper ◌</text>
+      <rect x="402" y="0" width="160" height="26" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-dasharray="4 3"/><text x="482" y="18" class="chip" text-anchor="middle" fill="#94a3b8">(live) future</text>
+      <text x="578" y="18" class="note">trading loop reuses backtest contracts → paper cannot drift from sim</text>
+    </g>
+  </g>
+
+  <!-- STATUS -->
+  <g transform="translate(40,1126)">
+    <text x="0" y="14" class="layer">STATUS  (224 tests green)</text>
+    <rect x="0" y="24" width="15" height="15" rx="3" fill="#bbf7d0" stroke="#22c55e"/>
+    <text x="22" y="36" class="desc">Real ✓: core taxonomy · factors (transforms/IC) · granular engine + walk-forward · scorecard · DV01 sizing · margin/carry · data mgmt + lake · 11 domains / 22 sources · EDGAR filings+xbrl+fundamentals (PIT) · macro · rates · FX · options · crypto 1m/L2 · geopolitics (GPR·GDELT) · API mgmt · models repo · universe loader</text>
+    <rect x="0" y="46" width="15" height="15" rx="3" fill="#ffffff" stroke="#94a3b8" stroke-dasharray="4 3"/>
+    <text x="22" y="58" class="desc">Stub ◌: IB futures · brokers (paper/alpaca) · trading loop · risk gate bodies · registry db · Typer CLI · LLM agents · LangGraph/crewAI bridges</text>
+  </g>
+
+  <!-- INVARIANTS -->
+  <g transform="translate(40,1194)">
+    <rect x="0" y="0" width="1120" height="74" rx="10" fill="#0f172a"/>
+    <text x="16" y="24" class="layer" fill="#e2e8f0">CORE INVARIANTS</text>
+    <text x="16" y="45" class="desc" fill="#cbd5e1">① strategy = pure fn: price Panel → TargetWeights   ·   ② one-bar lag = look-ahead guard   ·   ③ PIT discipline (fundamentals stamped at knowable date)   ·   ④ promotion = recorded scorecard gate</text>
+    <text x="16" y="62" class="desc" fill="#94a3b8">⑤ one lake, instrument stored once; universes are views   ·   ⑥ every outbound call is rate-limited / retried / breaker-guarded   ·   agents propose, framework disposes (sandboxed, backtest-only)</text>
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+name: rates_futures
+# CME Treasury futures complex. AssetClass.RATES + InstrumentForm.FUTURE → margined, DV01-sized.
+# contract_multiplier = point value ($ per 1.0 price point). modified_duration is an APPROXIMATE
+# CTD duration (real DV01 needs the cheapest-to-deliver bond); good enough for DV01 sizing.
+instruments:
+  - {id: ZT, asset_class: rates, form: future, exchange: CME, contract_multiplier: 2000, modified_duration: 1.9}
+  - {id: ZF, asset_class: rates, form: future, exchange: CME, contract_multiplier: 1000, modified_duration: 4.4}
+  - {id: ZN, asset_class: rates, form: future, exchange: CME, contract_multiplier: 1000, modified_duration: 7.8}
+  - {id: ZB, asset_class: rates, form: future, exchange: CME, contract_multiplier: 1000, modified_duration: 15.5}
+  - {id: UB, asset_class: rates, form: future, exchange: CME, contract_multiplier: 1000, modified_duration: 19.0}
+  - {id: ZQ, asset_class: rates, form: future, exchange: CME, contract_multiplier: 4167, modified_duration: 0.08}

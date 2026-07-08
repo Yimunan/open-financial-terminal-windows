@@ -1,0 +1,10 @@
+[
+  {"q": "What's Morgan Stanley trading at right now?", "symbol": "JPM"},
+  {"q": "What is Citigroup's beta?", "symbol": "C"},
+  {"q": "Has JPM outperformed the S&P 500 year to date?", "symbol": "JPM"},
+  {"q": "What's the average forward P/E of JPM, BAC, WFC and C?", "symbol": "JPM"},
+  {"q": "Can you pull up JPMorgan's latest 10-K filing?", "symbol": "JPM"},
+  {"q": "Are bank stocks cheap relative to the overall market right now?", "symbol": "JPM"},
+  {"q": "How is HSBC doing?", "symbol": "JPM"},
+  {"q": "What sector is Goldman Sachs in and what does it do?", "symbol": "GS"}
+]

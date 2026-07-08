@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Open Financial Terminal">
+  <title>Open Financial Terminal</title>
+
+  <!-- transparent background: black "OFT" reads on LIGHT browser chrome (paired via prefers-color-scheme) -->
+  <g fill="#14171c" transform="translate(128,128) scale(0.942) translate(-128,-128)">
+    <ellipse cx="67" cy="128" rx="15" ry="34" fill="none" stroke="#14171c" stroke-width="16"/>
+    <rect x="109" y="86" width="15" height="84" rx="2"/>
+    <rect x="109" y="86" width="40" height="15" rx="2"/>
+    <rect x="109" y="120" width="33" height="14" rx="2"/>
+    <rect x="168" y="86" width="44" height="15" rx="2"/>
+    <rect x="183" y="86" width="14" height="84" rx="2"/>
+  </g>
+</svg>

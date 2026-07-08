@@ -1,0 +1,12 @@
+[
+  {"q": "Is the recent news more bullish on JPM or BAC?", "symbol": "JPM"},
+  {"q": "Has JPM beaten the financial sector ETF XLF this year?", "symbol": "JPM"},
+  {"q": "Which of JPM, BAC and C moved the most today?", "symbol": "JPM"},
+  {"q": "Has BAC broken above $57?", "symbol": "BAC"},
+  {"q": "Is American Express really a bank, and how's it doing?", "symbol": "AXP"},
+  {"q": "How volatile has JPM been over the past month?", "symbol": "JPM"},
+  {"q": "What will JPM's earnings be next quarter?", "symbol": "JPM"},
+  {"q": "Does JPMorgan have meaningful crypto exposure?", "symbol": "JPM"},
+  {"q": "Rank the dow30 banks by 1-year return.", "symbol": "JPM"},
+  {"q": "What's the cheapest big bank on forward P/E?", "symbol": "JPM"}
+]

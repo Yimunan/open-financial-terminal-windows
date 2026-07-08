@@ -1,0 +1,19 @@
+name: managers_13f
+# Curated institutional 13F filers (SEC EDGAR CIKs, all verified to have recent 13F-HR filings).
+# These are the "smart money" managers whose quarterly long-equity holdings are worth tracking.
+managers:
+  - {cik: 1067983, name: Berkshire Hathaway}
+  - {cik: 1350694, name: Bridgewater Associates}
+  - {cik: 1037389, name: Renaissance Technologies}
+  - {cik: 1423053, name: Citadel Advisors}
+  - {cik: 1179392, name: Two Sigma Investments}
+  - {cik: 1273087, name: Millennium Management}
+  - {cik: 1167483, name: Tiger Global Management}
+  - {cik: 1649339, name: Scion Asset Management}
+  - {cik: 1336528, name: Pershing Square Capital}
+  - {cik: 1656456, name: Appaloosa LP}            # current entity (old CIK 1006438 dormant since 2016)
+  - {cik: 1029160, name: Soros Fund Management}
+  - {cik: 1061768, name: Baupost Group}
+  - {cik: 1079114, name: Greenlight Capital}
+  - {cik: 1135730, name: Coatue Management}
+  - {cik: 1061165, name: Lone Pine Capital}

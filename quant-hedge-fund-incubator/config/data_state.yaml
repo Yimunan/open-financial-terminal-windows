@@ -1,0 +1,198 @@
+generated: '2026-06-08T16:28:32+00:00'
+lake: data\lake
+datasets:
+  daily_bars:
+    domain: market
+    source: ccxt
+    status: live
+    pit: point_in_time
+    files: 4639
+    last_updated: '2026-06-06T04:06:38+00:00'
+    coverage: 4639 instruments across 5 asset classes
+  intraday_bars:
+    domain: market
+    source: ccxt
+    status: live
+    pit: point_in_time
+    files: 6
+    last_updated: '2026-06-06T05:33:32+00:00'
+    coverage: 6 crypto symbols (1m) · 2021-06-06 21:58:00+00:00 → 2026-06-06 05:23:00+00:00
+  option_chain:
+    domain: market
+    source: yfinance
+    status: live
+    pit: snapshot
+    files: 14
+    last_updated: '2026-06-05T20:27:01+00:00'
+    coverage: 14 underlyings · 19728 contracts (snapshot)
+  order_book:
+    domain: market
+    source: ccxt
+    status: live
+    pit: point_in_time
+    files: 11
+    last_updated: '2026-06-06T17:47:59+00:00'
+    coverage: 11 symbols · 30 snapshots (L2)
+  rates_curve:
+    domain: market
+    source: fred
+    status: live
+    pit: point_in_time
+    files: 1
+    last_updated: '2026-06-05T17:03:23+00:00'
+    coverage: tenors ['3M', '5Y', '10Y', '30Y'] · 1960-01-04 → 2026-06-05
+  instrument_reference:
+    domain: reference
+    source: manual
+    status: live
+    pit: snapshot
+    files: 0
+    last_updated: null
+    coverage: '9 universes: commodities, crypto_majors, dow30, equity_sectors, fx_majors,
+      nasdaq100, nasdaq_composite, rates_futures, sp500'
+  trading_calendar:
+    domain: reference
+    source: manual
+    status: stub
+    pit: static
+    files: 0
+    last_updated: null
+    coverage: —
+  fundamentals:
+    domain: fundamental
+    source: sec_edgar
+    status: live
+    pit: point_in_time
+    files: 952
+    last_updated: '2026-06-05T16:03:53+00:00'
+    coverage: 952 series across 15 metrics (book_value_per_share, debt_to_equity,
+      edgar_eps_diluted, edgar_equity, edgar_gross_profit, edgar_net_income, edgar_operating_cash_flow,
+      edgar_operating_income…) · 2009-05-07 → 2026-05-30
+  xbrl_facts:
+    domain: fundamental
+    source: sec_edgar
+    status: live
+    pit: point_in_time
+    files: 104
+    last_updated: '2026-06-05T16:03:53+00:00'
+    coverage: 104 companies · every reported XBRL fact (concept × period × filed-date)
+  original_filings:
+    domain: fundamental
+    source: sec_edgar
+    status: live
+    pit: point_in_time
+    files: 514
+    last_updated: '2026-06-05T15:53:33+00:00'
+    coverage: 514 docs (410 10-Q / 104 10-K) · filed 2025-03-11 → 2026-06-03
+  financial_statements:
+    domain: fundamental
+    source: yfinance
+    status: live
+    pit: revised
+    files: 624
+    last_updated: '2026-06-05T15:38:20+00:00'
+    coverage: 624 statement files (yfinance normalized, period-end)
+  carry:
+    domain: carry
+    source: ccxt
+    status: stub
+    pit: point_in_time
+    files: 0
+    last_updated: null
+    coverage: —
+  corporate_actions:
+    domain: corporate_action
+    source: ccxt
+    status: live
+    pit: point_in_time
+    files: 0
+    last_updated: null
+    coverage: folded into split/div-adjusted daily_bars (not stored separately)
+  macro_series:
+    domain: macro
+    source: fred
+    status: live
+    pit: revised
+    files: 37
+    last_updated: '2026-06-05T17:34:10+00:00'
+    coverage: 37 series · 1919-01-01 → 2026-05-01
+  equity_news:
+    domain: news
+    source: alpaca
+    status: live
+    pit: point_in_time
+    files: 10
+    last_updated: '2026-06-06T17:33:59+00:00'
+    coverage: 10 feeds · 100 articles · 2026-06-01 → 2026-06-06
+  macro_news:
+    domain: news
+    source: gdelt
+    status: live
+    pit: point_in_time
+    files: 1
+    last_updated: '2026-06-06T17:34:07+00:00'
+    coverage: 1 feeds · 250 articles · 2026-06-03 → 2026-06-06
+  institutional_holdings_13f:
+    domain: ownership
+    source: sec_edgar
+    status: live
+    pit: point_in_time
+    files: 2031
+    last_updated: '2026-06-08T16:25:22+00:00'
+    coverage: 111 managers · 2031 manager-quarters · periods 2021-03-31 → 2026-03-31
+  cusip_ticker:
+    domain: reference
+    source: openfigi
+    status: live
+    pit: snapshot
+    files: 1
+    last_updated: '2026-06-06T05:34:00+00:00'
+    coverage: 1369 CUSIP↔ticker rows mapped
+  market_index:
+    domain: reference
+    source: yfinance
+    status: live
+    pit: point_in_time
+    files: 18
+    last_updated: '2026-06-06T03:54:49+00:00'
+    coverage: 18 indices · 1990-01-02 → 2026-06-05
+  geopolitical_risk:
+    domain: geopolitics
+    source: gpr
+    status: live
+    pit: point_in_time
+    files: 48
+    last_updated: '2026-06-05T21:00:34+00:00'
+    coverage: 48 GPR series · 1985-01-01 → 2026-06-01
+  event_tone:
+    domain: geopolitics
+    source: gdelt
+    status: live
+    pit: point_in_time
+    files: 2
+    last_updated: '2026-06-05T20:56:51+00:00'
+    coverage: 2 GDELT series · 2023-06-01 → 2026-06-05
+  factors:
+    domain: derived
+    source: computed
+    status: live
+    pit: point_in_time
+    files: 0
+    last_updated: null
+    coverage: —
+  manager_graph_13f:
+    domain: derived
+    source: computed
+    status: live
+    pit: point_in_time
+    files: 21
+    last_updated: '2026-06-08T16:28:26+00:00'
+    coverage: 21 quarterly edge-list snapshots · periods 2021-03-31 → 2026-03-31
+  manager_graph_nodes_13f:
+    domain: derived
+    source: computed
+    status: live
+    pit: point_in_time
+    files: 21
+    last_updated: '2026-06-08T16:28:26+00:00'
+    coverage: 21 quarterly node-metric snapshots · periods 2021-03-31 → 2026-03-31

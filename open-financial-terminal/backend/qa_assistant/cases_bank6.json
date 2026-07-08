@@ -1,0 +1,10 @@
+[
+  {"q": "What does ROE mean, and what is JPM's?", "symbol": "JPM"},
+  {"q": "What's the overall news sentiment on JPM right now?", "symbol": "JPM"},
+  {"q": "Find me a cheap, high-quality bank in the Dow.", "symbol": "JPM"},
+  {"q": "How much does JPM pay in dividends per share?", "symbol": "JPM"},
+  {"q": "Is JPM's P/E high by its own historical standards?", "symbol": "JPM"},
+  {"q": "What's the day's high and low for Bank of America?", "symbol": "BAC"},
+  {"q": "Compare the price-to-book of all four big banks.", "symbol": "JPM"},
+  {"q": "Which has a higher dividend yield, JPM or the S&P 500?", "symbol": "JPM"}
+]

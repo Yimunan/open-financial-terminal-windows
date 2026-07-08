@@ -1,0 +1,80 @@
+# Incubator-wide defaults. Secrets/endpoints live in .env (see .env.example).
+
+backtest:
+  initial_equity: 100000.0
+  signal_lag: 1               # bars between signal date and execution (look-ahead guard)
+  fill: close                 # close | next_open  (next_open needs an open panel)
+  rebalance_threshold: 0.0025 # no-trade band: skip per-name target moves below this fraction of
+                              # equity. Calibrated by scripts/tune_rebalance.py — non-zero trims
+                              # turnover and lifts net Sharpe in every smoothing block vs the old
+                              # dormant 0.0; 0.0025 is the conservative knee (0.005 trims more).
+  allow_fractional: false     # false → round targets to lot_size / whole contracts
+  periods_per_year: 252       # use 365 for 24/7 crypto-only books
+
+# Portfolio construction — score smoothing is the PRIMARY turnover lever (cuts ~6x at hl=10 on
+# the equity_sectors sweep); halflife=20 starts degrading the signal. Mirrors ConstructionConfig.
+construction:
+  gross: 1.0
+  max_position: 0.05          # per-name cap as a fraction of gross
+  smoothing_halflife: 10      # EWMA halflife on the score; null = off
+  target_vol: 0.10            # annualized; null = off
+  vol_lookback: 60
+  max_leverage: 3.0
+
+costs:                        # commissions, per asset class
+  crypto_bps: 10.0
+  equity_per_share: 0.005
+  equity_min_ticket: 1.0
+  futures_per_contract: 2.0
+
+slippage:
+  bps: 5.0                    # adverse price impact applied at fill
+
+financing:                    # daily carry on the held book (annualized bps, 360d)
+  short_borrow_bps: 50.0      # fee on short notional
+  leverage_bps: 100.0         # financing on borrowed cash when gross > equity
+  cash_bps: 0.0               # interest earned on idle cash
+
+sizing:                       # risk-based position sizing (portfolio.sizing)
+  dv01_budget_per_equity: 0.0005   # rates/credit: weight 1.0 → book DV01 = this × equity
+
+# Promotion gate (evaluation.scorecard.Thresholds)
+scorecard:
+  min_sharpe: 1.0
+  min_calmar: 0.5
+  max_drawdown: 0.25
+  max_ann_turnover: 50.0
+  min_oos_sharpe_ratio: 0.5
+
+risk:
+  max_gross: 1.5
+  max_net: 1.0
+  max_position: 0.20
+  max_drawdown_kill: 0.20
+
+walk_forward:
+  train_days: 504
+  test_days: 126
+  step_days: 126
+  purge_days: 10
+
+llm:
+  default_model: gemma        # served by the auto-swap proxy on :8001
+  ideation_n: 5
+
+# Execution scheduling + market impact (defaults live in qhfi.execution.algorithms;
+# this section is documentation — settings.yaml is not code-loaded yet).
+execution:
+  algo: pov                   # twap | pov
+  twap_horizon_days: 5        # TWAP: spread the parent order evenly over this many days
+  pov_rate: 0.10             # POV: max fraction of ADV to trade per day
+  pov_max_days: 20           # POV: cap on the schedule horizon
+  impact_eta_bps: 10.0        # sqrt-impact coefficient (bps at 100% ADV participation)
+
+# Tax optimization (defaults live in qhfi.tax; equities/cash only).
+tax:
+  lot_method: fifo            # fifo | lifo | hifo | min_tax
+  short_term_rate: 0.37
+  long_term_rate: 0.20
+  wash_sale_days: 30          # ± window around a loss sale that triggers a wash sale
+  harvest_min_loss: 100.0     # minimum unrealized loss to flag a harvest candidate
