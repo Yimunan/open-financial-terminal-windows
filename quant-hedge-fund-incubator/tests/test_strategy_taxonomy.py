@@ -9,11 +9,13 @@ from qhfi.core.types import AssetClass
 from qhfi.strategy.registry import all_names
 from qhfi.strategy.taxonomy import (
     STRATEGIES,
+    DataInput,
     Exposure,
     SignalAxis,
     Status,
     StrategyStyle,
     by_asset_class,
+    by_data_input,
     by_status,
     by_style,
     describe,
@@ -76,3 +78,23 @@ def test_by_asset_class_filters():
     # carry is the only kind reaching into rates/FX/commodity
     assert "carry" in {k.name for k in by_asset_class(AssetClass.COMMODITY)}
     assert "factor" not in {k.name for k in by_asset_class(AssetClass.COMMODITY)}
+
+
+def test_data_input_dimension_and_its_declared_but_empty_values():
+    """Every kind declares a data input, describe() carries it, and the enum intentionally holds
+    inputs reached by no existing OR planned kind (order_book, alternative) — the intended space,
+    wider than what's built, mirroring the unused `trend` style and `intraday`/`weekly` horizons."""
+    for k in STRATEGIES:
+        assert isinstance(k.data_input, DataInput)
+    assert all("data_input" in row for row in describe())
+
+    used = {k.data_input for k in STRATEGIES}
+    empty = set(DataInput) - used
+    assert {DataInput.ORDER_BOOK, DataInput.ALTERNATIVE} <= empty   # declared but no kind yet
+    assert not by_data_input(DataInput.ORDER_BOOK)                  # no strategy uses it
+
+    # spot-checks of the classification
+    assert {k.name for k in by_data_input(DataInput.FUNDAMENTALS)} == {"value", "quality"}
+    assert get("carry").data_input is DataInput.CARRY
+    assert get("barra_minvar").data_input is DataInput.REFERENCE
+    assert get("factor").data_input is DataInput.PRICE           # price-only by default
