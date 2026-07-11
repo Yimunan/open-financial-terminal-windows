@@ -1,11 +1,16 @@
 """Strategy taxonomy — a formal classification of the *kinds* of strategies the incubator
 runs, the trading-side mirror of :mod:`qhfi.data.taxonomy`.
 
-Six dimensions tag every strategy kind: **style** (the alpha family), **asset classes** (what
+Seven dimensions tag every strategy kind: **style** (the alpha family), **asset classes** (what
 it trades), **horizon** (holding period), **exposure** (how the book is constructed /
-neutralized), **signal axis** (cross-sectional vs time-series), and **status** (live/stub/
-planned). The ``STRATEGIES`` registry is the single source of truth for the strategy *space* —
-what families exist, which are actually implemented vs. planned, and how each is built.
+neutralized), **signal axis** (cross-sectional vs time-series), **data input** (what data it needs
+beyond a close-price panel), and **status** (live/stub/planned). The ``STRATEGIES`` registry is the
+single source of truth for the strategy *space* — what families exist, which are actually
+implemented vs. planned, and how each is built.
+
+Like ``horizon`` (``intraday``/``weekly`` sit unused) and ``style`` (``trend`` has no kind yet),
+the enums deliberately encode the *intended* space: some values are declared but reached by no
+existing or planned kind — e.g. ``DataInput.ORDER_BOOK`` and ``DataInput.ALTERNATIVE``.
 
 Names of LIVE/STUB kinds match the keys in :mod:`qhfi.strategy.registry` (the classes reachable
 via ``strategy.registry.get``); PLANNED kinds map a known alpha family to the enabling factor
@@ -59,6 +64,18 @@ class SignalAxis(str, Enum):
     TIME_SERIES = "time_series"          # each instrument judged vs. its own history
 
 
+# ── data-input dimension ─────────────────────────────────────────────────────────
+class DataInput(str, Enum):
+    """Extra data a strategy needs beyond a close-price panel. Deliberately wider than what's
+    built: ``ORDER_BOOK`` and ``ALTERNATIVE`` are declared but reached by no existing/planned kind."""
+    PRICE = "price"                # OHLCV panel only — nothing beyond the price grid
+    FUNDAMENTALS = "fundamentals"  # point-in-time financial statements (E/P, ROE, …)
+    REFERENCE = "reference"        # security master: sector/industry classification + market cap
+    CARRY = "carry"                # funding / roll / coupon yield per asset class
+    ORDER_BOOK = "order_book"      # L2 microstructure — used by market-making, outside this taxonomy
+    ALTERNATIVE = "alternative"    # sentiment / positioning / alt data — a planned research direction
+
+
 # ── status dimension (mirrors data.taxonomy.Status) ──────────────────────────────
 class Status(str, Enum):
     LIVE = "live"        # implemented and runnable
@@ -75,6 +92,7 @@ class StrategyKind:
     exposure: Exposure
     signal_axis: SignalAxis
     status: Status
+    data_input: DataInput = DataInput.PRICE  # extra data beyond a close panel the strategy needs
     enabling_factors: tuple[str, ...] = ()  # factor names (factors.registry) it builds on
     notes: str = ""
 
@@ -131,6 +149,7 @@ STRATEGIES: list[StrategyKind] = [
     StrategyKind(
         "barra_minvar", StrategyStyle.RISK_BASED, (AssetClass.EQUITY,),
         Horizon.MONTHLY, Exposure.LONG_ONLY, SignalAxis.CROSS_SECTIONAL, Status.LIVE,
+        data_input=DataInput.REFERENCE,
         notes="Minimum-variance book on the Barra cross-sectional risk model: each month fit "
               "Σ = X F Xᵀ + diag(Δ) (standardized style factors + GICS industry dummies, √ADV WLS) "
               "on a trailing window and hold long-only min-var weights. Carries its MarketPanels "
@@ -147,12 +166,14 @@ STRATEGIES: list[StrategyKind] = [
     StrategyKind(
         "value", StrategyStyle.VALUE, (AssetClass.EQUITY,),
         Horizon.MONTHLY, Exposure.DOLLAR_NEUTRAL, SignalAxis.CROSS_SECTIONAL, Status.PLANNED,
+        data_input=DataInput.FUNDAMENTALS,
         enabling_factors=("value",),
         notes="Cheapness (E/P, B/P) via ValueFactor; awaits broader PIT fundamentals coverage.",
     ),
     StrategyKind(
         "quality", StrategyStyle.QUALITY, (AssetClass.EQUITY,),
         Horizon.MONTHLY, Exposure.DOLLAR_NEUTRAL, SignalAxis.CROSS_SECTIONAL, Status.PLANNED,
+        data_input=DataInput.FUNDAMENTALS,
         enabling_factors=("quality",),
         notes="Profitability/soundness (ROE, margins, low leverage) via QualityFactor.",
     ),
@@ -172,6 +193,7 @@ STRATEGIES: list[StrategyKind] = [
         "carry", StrategyStyle.CARRY,
         (AssetClass.CRYPTO, AssetClass.RATES, AssetClass.FX, AssetClass.COMMODITY),
         Horizon.SWING, Exposure.LONG_SHORT, SignalAxis.CROSS_SECTIONAL, Status.PLANNED,
+        data_input=DataInput.CARRY,
         enabling_factors=("carry",),
         notes="Earn the yield for holding (funding/roll/coupon) via CarryFactor; blocked on the "
               "carry/funding/roll-yield data panel (still a stub).",
@@ -200,12 +222,17 @@ def by_status(status: Status) -> list[StrategyKind]:
     return [k for k in STRATEGIES if k.status is status]
 
 
+def by_data_input(data_input: DataInput) -> list[StrategyKind]:
+    return [k for k in STRATEGIES if k.data_input is data_input]
+
+
 def describe() -> list[dict]:
     return [
         {"name": k.name, "style": k.style.value,
          "asset_classes": ",".join(a.value for a in k.asset_classes),
          "horizon": k.horizon.value, "exposure": k.exposure.value,
          "signal_axis": k.signal_axis.value, "status": k.status.value,
+         "data_input": k.data_input.value,
          "factors": ",".join(k.enabling_factors)}
         for k in STRATEGIES
     ]
